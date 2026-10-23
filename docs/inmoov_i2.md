@@ -2,7 +2,7 @@
 
 ## What this repository implements today
 
-**`inmoov_urdf`** ships the **InMoov i2** robot description under `description/robot_description/`, vendored from [Artur-Fedjukevits/inmoov_ros2](https://github.com/Artur-Fedjukevits/inmoov_ros2/tree/main/src/inmoov_description) (`src/inmoov_description`, commit `73c584b`). Mesh URIs were rewritten from `package://inmoov_description/meshes/` to the parent `mesh_dir`; `description/urdf/inmoov.urdf.xacro` adds a fixed `base_node` root above the i2 `stand_link`. Meshes are CC BY-NC 4.0 (see `description/robot_description/LICENSE-ASSETS.md`).
+**`inmoov_i2_urdf`** ships the **InMoov i2** robot description under `description/robot_description/`, vendored from [Artur-Fedjukevits/inmoov_ros2](https://github.com/Artur-Fedjukevits/inmoov_ros2/tree/main/src/inmoov_description) (`src/inmoov_description`, commit `73c584b`). Mesh URIs were rewritten from `package://inmoov_description/meshes/` to the parent `mesh_dir`; `description/urdf/inmoov.urdf.xacro` adds a fixed `base_node` root above the i2 `stand_link`. Meshes are CC BY-NC 4.0 (see `description/robot_description/LICENSE-ASSETS.md`).
 
 The hardware YAML in **`config/hardware/active.yaml`** maps the existing Lucy actuators (arms, torso, fingers, neck, jaw, eyes) onto i2 joint names. The i2 **expression** joints (eyelids, cheeks, brows, forehead, upper lip) exist in the URDF but are not wired yet: the generator publishes them at 0 through `joint_state_broadcaster` `extra_joints`.
 

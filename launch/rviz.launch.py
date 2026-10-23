@@ -35,7 +35,7 @@ def generate_launch_description():
 
     rviz_config = PathJoinSubstitution(
         [
-            FindPackageShare("inmoov_urdf"),
+            FindPackageShare("inmoov_i2_urdf"),
             "config",
             "inmoov_rviz.rviz",
         ]

@@ -50,7 +50,7 @@ _IS_DARWIN = sys.platform == "darwin"
 
 
 def _gz_ros2_control_plugin_path():
-    pkg_share = get_package_prefix("inmoov_urdf")
+    pkg_share = get_package_prefix("inmoov_i2_urdf")
     plugin_path = os.path.join(pkg_share, "lib", "mock_sensor")
     try:
         share = get_package_share_directory("gz_ros2_control")
@@ -68,7 +68,7 @@ _DEFAULT_GENERATED_FILES = {
 def _active_generated_files(pkg_share: str) -> dict[str, str]:
     """Generated-artifact filenames from the active preset (defaults if unreadable)."""
     candidates = [
-        Path.cwd() / "src" / "inmoov_urdf" / "config" / "hardware" / "active.yaml",
+        Path.cwd() / "src" / "inmoov_i2_urdf" / "config" / "hardware" / "active.yaml",
         Path(pkg_share) / "config" / "hardware" / "active.yaml",
     ]
     out = dict(_DEFAULT_GENERATED_FILES)
@@ -90,7 +90,7 @@ def _active_generated_files(pkg_share: str) -> dict[str, str]:
 
 
 def _default_controllers_yaml(pkg_share: str, controllers_basename: str) -> str:
-    cwd_candidate = Path.cwd() / "src" / "inmoov_urdf" / "config" / controllers_basename
+    cwd_candidate = Path.cwd() / "src" / "inmoov_i2_urdf" / "config" / controllers_basename
     if cwd_candidate.is_file():
         return str(cwd_candidate.resolve())
     return os.path.join(pkg_share, "config", controllers_basename)
@@ -99,7 +99,7 @@ def _default_controllers_yaml(pkg_share: str, controllers_basename: str) -> str:
 def _sim_camera_topics(pkg_share: str) -> list[tuple[str, str]]:
     """LCP-facing (compressed) topics for every camera simulated in Gazebo."""
     candidates = [
-        Path.cwd() / "src" / "inmoov_urdf" / "config" / "hardware" / "active.yaml",
+        Path.cwd() / "src" / "inmoov_i2_urdf" / "config" / "hardware" / "active.yaml",
         Path(pkg_share) / "config" / "hardware" / "active.yaml",
     ]
     for active in candidates:
@@ -170,7 +170,7 @@ def _gpu_env_actions(context, *args, **kwargs):
 
 def generate_launch_description():
     ros_distro = os.environ.get("ROS_DISTRO", "jazzy").lower()
-    pkg_share = get_package_share_directory("inmoov_urdf")
+    pkg_share = get_package_share_directory("inmoov_i2_urdf")
     default_base = os.path.join(pkg_share, "description")
     generated = _active_generated_files(pkg_share)
     default_controllers = _default_controllers_yaml(
@@ -208,7 +208,7 @@ def generate_launch_description():
     )
 
     bridge_config_path = os.path.join(
-        get_package_share_directory("inmoov_urdf"),
+        get_package_share_directory("inmoov_i2_urdf"),
         "description",
         "gazebo",
         "gazebo_bridge.yaml",
@@ -330,7 +330,7 @@ def generate_launch_description():
             )
         ],
     )
-    mesh_dae = get_package_share_directory("inmoov_urdf")
+    mesh_dae = get_package_share_directory("inmoov_i2_urdf")
 
     def create_spawner(name: str, delay: float = 0.0):
         spawner = Node(
