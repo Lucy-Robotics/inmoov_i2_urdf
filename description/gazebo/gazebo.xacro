@@ -172,9 +172,9 @@
       <param name="servo_type">180</param>
       <param name="offset">0</param>
       <param name="direction">1</param>
-      <param name="scale">1</param>
+      <param name="scale">0.57384</param>
       <param name="limit_min">0</param>
-      <param name="limit_max">3.14159</param>
+      <param name="limit_max">2.26893</param>
       <param name="default">0</param>
       <command_interface name="position" />
       <state_interface name="position" />
@@ -184,9 +184,9 @@
       <param name="servo_type">180</param>
       <param name="offset">0</param>
       <param name="direction">1</param>
-      <param name="scale">1</param>
+      <param name="scale">0.55533</param>
       <param name="limit_min">0</param>
-      <param name="limit_max">3.14159</param>
+      <param name="limit_max">2.26893</param>
       <param name="default">0</param>
       <command_interface name="position" />
       <state_interface name="position" />
@@ -196,9 +196,9 @@
       <param name="servo_type">180</param>
       <param name="offset">0</param>
       <param name="direction">1</param>
-      <param name="scale">1</param>
+      <param name="scale">0.60513</param>
       <param name="limit_min">0</param>
-      <param name="limit_max">3.14159</param>
+      <param name="limit_max">2.26893</param>
       <param name="default">0</param>
       <command_interface name="position" />
       <state_interface name="position" />
@@ -206,12 +206,12 @@
     <joint name="i02_leftHand_pinkyPhal_joint">
       <param name="virtual_pin">4</param>
       <param name="servo_type">180</param>
-      <param name="offset">0</param>
-      <param name="direction">1</param>
-      <param name="scale">1</param>
-      <param name="limit_min">0</param>
-      <param name="limit_max">3.14159</param>
-      <param name="default">0</param>
+      <param name="offset">2.96706</param>
+      <param name="direction">-1</param>
+      <param name="scale">0.45769</param>
+      <param name="limit_min">0.0</param>
+      <param name="limit_max">2.96706</param>
+      <param name="default">2.96706</param>
       <command_interface name="position" />
       <state_interface name="position" />
     </joint>
@@ -244,10 +244,10 @@
       <param name="servo_type">180</param>
       <param name="offset">0</param>
       <param name="direction">1</param>
-      <param name="scale">1</param>
+      <param name="scale">0.55885</param>
       <param name="limit_min">0</param>
-      <param name="limit_max">3.14159</param>
-      <param name="default">0.017453292519943295</param>
+      <param name="limit_max">2.26893</param>
+      <param name="default">0</param>
       <command_interface name="position" />
       <state_interface name="position" />
     </joint>
@@ -256,7 +256,7 @@
       <param name="servo_type">180</param>
       <param name="offset">0</param>
       <param name="direction">1</param>
-      <param name="scale">1</param>
+      <param name="scale">0.41317</param>
       <param name="limit_min">0</param>
       <param name="limit_max">3.14159</param>
       <param name="default">0</param>
@@ -268,9 +268,9 @@
       <param name="servo_type">180</param>
       <param name="offset">0</param>
       <param name="direction">1</param>
-      <param name="scale">1</param>
+      <param name="scale">0.58001</param>
       <param name="limit_min">0</param>
-      <param name="limit_max">3.14159</param>
+      <param name="limit_max">2.26893</param>
       <param name="default">0</param>
       <command_interface name="position" />
       <state_interface name="position" />
@@ -280,9 +280,9 @@
       <param name="servo_type">180</param>
       <param name="offset">0</param>
       <param name="direction">1</param>
-      <param name="scale">1</param>
+      <param name="scale">0.57208</param>
       <param name="limit_min">0</param>
-      <param name="limit_max">3.14159</param>
+      <param name="limit_max">2.26893</param>
       <param name="default">0</param>
       <command_interface name="position" />
       <state_interface name="position" />

@@ -194,11 +194,11 @@ actuators:
     servo_type: '180'
     offset: 0
     direction: 1
-    scale: 1
+    scale: 0.57384
     limit_min: 0
-    limit_max: 3.14159
+    limit_max: 2.26893
     default: 0
-    enabled: false
+    enabled: true
   - id: left_majeure
     urdf_joint: i02_leftHand_majeurePhal_joint
     board: mega_right
@@ -207,11 +207,11 @@ actuators:
     servo_type: '180'
     offset: 0
     direction: 1
-    scale: 1
+    scale: 0.55533
     limit_min: 0
-    limit_max: 3.14159
+    limit_max: 2.26893
     default: 0
-    enabled: false
+    enabled: true
   - id: left_ring
     urdf_joint: i02_leftHand_ringFingerPhal_joint
     board: mega_right
@@ -220,24 +220,24 @@ actuators:
     servo_type: '180'
     offset: 0
     direction: 1
-    scale: 1
+    scale: 0.60513
     limit_min: 0
-    limit_max: 3.14159
+    limit_max: 2.26893
     default: 0
-    enabled: false
+    enabled: true
   - id: left_pinky
     urdf_joint: i02_leftHand_pinkyPhal_joint
     board: mega_right
     virtual_pin: 4
     physical_pin: 5
     servo_type: '180'
-    offset: 0
-    direction: 1
-    scale: 1
-    limit_min: 0
-    limit_max: 3.14159
-    default: 0
-    enabled: false
+    offset: 2.96706
+    direction: -1
+    scale: 0.45769
+    limit_min: 0.0
+    limit_max: 2.96706
+    default: 2.96706
+    enabled: true
   - id: right_shoulder_z
     urdf_joint: right_shoulder_z_joint
     board: mega_right
@@ -281,7 +281,7 @@ actuators:
     urdf_joint: right_wrist_z_joint
     board: mega_right
     virtual_pin: 11
-    physical_pin: 22
+    physical_pin: 23
     servo_type: '180'
     offset: 2.61799
     direction: -1
@@ -311,11 +311,11 @@ actuators:
     servo_type: '180'
     offset: 0
     direction: 1
-    scale: 1
+    scale: 0.55885
     limit_min: 0
-    limit_max: 3.14159
-    default: 0.017453292519943295
-    enabled: false
+    limit_max: 2.26893
+    default: 0
+    enabled: true
   - id: right_majeure
     urdf_joint: i02_rightHand_majeurePhal_joint
     board: mega_right
@@ -324,37 +324,37 @@ actuators:
     servo_type: '180'
     offset: 0
     direction: 1
-    scale: 1
+    scale: 0.41317
     limit_min: 0
     limit_max: 3.14159
     default: 0
-    enabled: false
+    enabled: true
   - id: right_ring
     urdf_joint: i02_rightHand_ringFingerPhal_joint
     board: mega_right
     virtual_pin: 9
-    physical_pin: 20
-    servo_type: '180'
-    offset: 0
-    direction: 1
-    scale: 1
-    limit_min: 0
-    limit_max: 3.14159
-    default: 0
-    enabled: false
-  - id: right_pinky
-    urdf_joint: i02_rightHand_pinkyPhal_joint
-    board: mega_right
-    virtual_pin: 10
     physical_pin: 21
     servo_type: '180'
     offset: 0
     direction: 1
-    scale: 1
+    scale: 0.58001
     limit_min: 0
-    limit_max: 3.14159
+    limit_max: 2.26893
     default: 0
-    enabled: false
+    enabled: true
+  - id: right_pinky
+    urdf_joint: i02_rightHand_pinkyPhal_joint
+    board: mega_right
+    virtual_pin: 10
+    physical_pin: 22
+    servo_type: '180'
+    offset: 0
+    direction: 1
+    scale: 0.57208
+    limit_min: 0
+    limit_max: 2.26893
+    default: 0
+    enabled: true
   - id: torso_stom_mid
     urdf_joint: torso_z_joint
     board: mega_right
