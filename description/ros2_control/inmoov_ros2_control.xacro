@@ -3,20 +3,20 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="inmoov" version="1.0">
   <xacro:arg name="use_mock_hardware" default="false" />
 
-  <ros2_control name="LucyHardwareLeftArm" type="system">
+  <ros2_control name="LucyHardwareArms" type="system">
     <hardware>
       <plugin>lucy_ros2_control/LucySystemHardware</plugin>
       <xacro:if value="$(arg use_mock_hardware)">
         <param name="publish_actuators">false</param>
       </xacro:if>
       <xacro:unless value="$(arg use_mock_hardware)">
-        <param name="publisher_topic">actuators/left_arm</param>
-        <param name="node_name">left_arm</param>
+        <param name="publisher_topic">actuators/arms</param>
+        <param name="node_name">arms</param>
       </xacro:unless>
     </hardware>
       <joint name="left_shoulder_z_joint">
           <param name="virtual_pin">0</param>
-          <param name="servo_type">270</param>
+          <param name="servo_type">180</param>
           <param name="offset">1.5708</param>
           <param name="direction">1</param>
           <param name="scale">1</param>
@@ -32,7 +32,7 @@
       </joint>
       <joint name="left_shoulder_x_joint">
           <param name="virtual_pin">1</param>
-          <param name="servo_type">270</param>
+          <param name="servo_type">180</param>
           <param name="offset">0</param>
           <param name="direction">1</param>
           <param name="scale">1</param>
@@ -48,7 +48,7 @@
       </joint>
       <joint name="left_elbow_x_joint">
           <param name="virtual_pin">2</param>
-          <param name="servo_type">270</param>
+          <param name="servo_type">180</param>
           <param name="offset">0</param>
           <param name="direction">1</param>
           <param name="scale">1</param>
@@ -64,12 +64,12 @@
       </joint>
       <joint name="left_wrist_z_joint">
           <param name="virtual_pin">3</param>
-          <param name="servo_type">300</param>
+          <param name="servo_type">180</param>
           <param name="offset">2.61799</param>
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">5.23599</param>
+          <param name="limit_max">3.14159</param>
           <param name="default">2.61799</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -80,7 +80,7 @@
       </joint>
       <joint name="i02_leftHand_ThumbMid_joint">
           <param name="virtual_pin">4</param>
-          <param name="servo_type">300</param>
+          <param name="servo_type">180</param>
           <param name="offset">0</param>
           <param name="direction">1</param>
           <param name="scale">1</param>
@@ -96,7 +96,7 @@
       </joint>
       <joint name="i02_leftHand_indexPhal_joint">
           <param name="virtual_pin">5</param>
-          <param name="servo_type">300</param>
+          <param name="servo_type">180</param>
           <param name="offset">0</param>
           <param name="direction">1</param>
           <param name="scale">1</param>
@@ -112,7 +112,7 @@
       </joint>
       <joint name="i02_leftHand_majeurePhal_joint">
           <param name="virtual_pin">6</param>
-          <param name="servo_type">300</param>
+          <param name="servo_type">180</param>
           <param name="offset">0</param>
           <param name="direction">1</param>
           <param name="scale">1</param>
@@ -128,7 +128,7 @@
       </joint>
       <joint name="i02_leftHand_ringFingerPhal_joint">
           <param name="virtual_pin">7</param>
-          <param name="servo_type">300</param>
+          <param name="servo_type">180</param>
           <param name="offset">0</param>
           <param name="direction">1</param>
           <param name="scale">1</param>
@@ -144,7 +144,7 @@
       </joint>
       <joint name="i02_leftHand_pinkyPhal_joint">
           <param name="virtual_pin">8</param>
-          <param name="servo_type">300</param>
+          <param name="servo_type">180</param>
           <param name="offset">0</param>
           <param name="direction">1</param>
           <param name="scale">1</param>
@@ -158,21 +158,9 @@
           </command_interface>
           <state_interface name="position" />
       </joint>
-  </ros2_control>
-  <ros2_control name="LucyHardwareRightArm" type="system">
-    <hardware>
-      <plugin>lucy_ros2_control/LucySystemHardware</plugin>
-      <xacro:if value="$(arg use_mock_hardware)">
-        <param name="publish_actuators">false</param>
-      </xacro:if>
-      <xacro:unless value="$(arg use_mock_hardware)">
-        <param name="publisher_topic">actuators/right_arm</param>
-        <param name="node_name">right_arm</param>
-      </xacro:unless>
-    </hardware>
       <joint name="right_shoulder_z_joint">
-          <param name="virtual_pin">0</param>
-          <param name="servo_type">270</param>
+          <param name="virtual_pin">9</param>
+          <param name="servo_type">180</param>
           <param name="offset">1.5708</param>
           <param name="direction">-1</param>
           <param name="scale">1</param>
@@ -187,8 +175,8 @@
           <state_interface name="position" />
       </joint>
       <joint name="right_shoulder_x_joint">
-          <param name="virtual_pin">1</param>
-          <param name="servo_type">270</param>
+          <param name="virtual_pin">10</param>
+          <param name="servo_type">180</param>
           <param name="offset">0</param>
           <param name="direction">1</param>
           <param name="scale">1</param>
@@ -203,8 +191,8 @@
           <state_interface name="position" />
       </joint>
       <joint name="right_elbow_x_joint">
-          <param name="virtual_pin">2</param>
-          <param name="servo_type">270</param>
+          <param name="virtual_pin">11</param>
+          <param name="servo_type">180</param>
           <param name="offset">0</param>
           <param name="direction">1</param>
           <param name="scale">1</param>
@@ -219,13 +207,13 @@
           <state_interface name="position" />
       </joint>
       <joint name="right_wrist_z_joint">
-          <param name="virtual_pin">3</param>
-          <param name="servo_type">300</param>
+          <param name="virtual_pin">12</param>
+          <param name="servo_type">180</param>
           <param name="offset">2.61799</param>
           <param name="direction">-1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">5.23599</param>
+          <param name="limit_max">3.14159</param>
           <param name="default">2.61799</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -235,8 +223,8 @@
           <state_interface name="position" />
       </joint>
       <joint name="i02_rightHand_ThumbMid_joint">
-          <param name="virtual_pin">4</param>
-          <param name="servo_type">300</param>
+          <param name="virtual_pin">13</param>
+          <param name="servo_type">180</param>
           <param name="offset">0</param>
           <param name="direction">1</param>
           <param name="scale">1</param>
@@ -251,8 +239,8 @@
           <state_interface name="position" />
       </joint>
       <joint name="i02_rightHand_indexPhal_joint">
-          <param name="virtual_pin">5</param>
-          <param name="servo_type">300</param>
+          <param name="virtual_pin">14</param>
+          <param name="servo_type">180</param>
           <param name="offset">0</param>
           <param name="direction">1</param>
           <param name="scale">1</param>
@@ -267,8 +255,8 @@
           <state_interface name="position" />
       </joint>
       <joint name="i02_rightHand_majeurePhal_joint">
-          <param name="virtual_pin">6</param>
-          <param name="servo_type">300</param>
+          <param name="virtual_pin">15</param>
+          <param name="servo_type">180</param>
           <param name="offset">0</param>
           <param name="direction">1</param>
           <param name="scale">1</param>
@@ -283,8 +271,8 @@
           <state_interface name="position" />
       </joint>
       <joint name="i02_rightHand_ringFingerPhal_joint">
-          <param name="virtual_pin">7</param>
-          <param name="servo_type">300</param>
+          <param name="virtual_pin">16</param>
+          <param name="servo_type">180</param>
           <param name="offset">0</param>
           <param name="direction">1</param>
           <param name="scale">1</param>
@@ -299,8 +287,8 @@
           <state_interface name="position" />
       </joint>
       <joint name="i02_rightHand_pinkyPhal_joint">
-          <param name="virtual_pin">8</param>
-          <param name="servo_type">300</param>
+          <param name="virtual_pin">17</param>
+          <param name="servo_type">180</param>
           <param name="offset">0</param>
           <param name="direction">1</param>
           <param name="scale">1</param>
@@ -328,7 +316,7 @@
     </hardware>
       <joint name="left_shoulder_y_joint">
           <param name="virtual_pin">0</param>
-          <param name="servo_type">270</param>
+          <param name="servo_type">180</param>
           <param name="offset">0</param>
           <param name="direction">1</param>
           <param name="scale">1</param>
@@ -344,7 +332,7 @@
       </joint>
       <joint name="right_shoulder_y_joint">
           <param name="virtual_pin">1</param>
-          <param name="servo_type">270</param>
+          <param name="servo_type">180</param>
           <param name="offset">0</param>
           <param name="direction">1</param>
           <param name="scale">1</param>
@@ -360,12 +348,12 @@
       </joint>
       <joint name="torso_z_joint">
           <param name="virtual_pin">2</param>
-          <param name="servo_type">270</param>
+          <param name="servo_type">180</param>
           <param name="offset">2.35619</param>
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">4.71239</param>
+          <param name="limit_max">3.14159</param>
           <param name="default">2.35619</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -376,7 +364,7 @@
       </joint>
       <joint name="torso_y_joint">
           <param name="virtual_pin">3</param>
-          <param name="servo_type">270</param>
+          <param name="servo_type">180</param>
           <param name="offset">1.5708</param>
           <param name="direction">1</param>
           <param name="scale">1</param>
@@ -392,7 +380,7 @@
       </joint>
       <joint name="i01_head_rothead_joint">
           <param name="virtual_pin">4</param>
-          <param name="servo_type">270</param>
+          <param name="servo_type">180</param>
           <param name="offset">1.5708</param>
           <param name="direction">1</param>
           <param name="scale">1</param>
@@ -408,7 +396,7 @@
       </joint>
       <joint name="neck_joint">
           <param name="virtual_pin">5</param>
-          <param name="servo_type">270</param>
+          <param name="servo_type">180</param>
           <param name="offset">1.5708</param>
           <param name="direction">1</param>
           <param name="scale">1</param>
@@ -424,7 +412,7 @@
       </joint>
       <joint name="i01_head_neck_001_joint">
           <param name="virtual_pin">6</param>
-          <param name="servo_type">300</param>
+          <param name="servo_type">180</param>
           <param name="offset">1.5708</param>
           <param name="direction">1</param>
           <param name="scale">1</param>
@@ -440,7 +428,7 @@
       </joint>
       <joint name="i02_head_jaw_joint">
           <param name="virtual_pin">7</param>
-          <param name="servo_type">300</param>
+          <param name="servo_type">180</param>
           <param name="offset">0.43633</param>
           <param name="direction">1</param>
           <param name="scale">0.10526</param>

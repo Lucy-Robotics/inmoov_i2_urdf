@@ -73,8 +73,8 @@ REQUIRED_BOARD = (
     "controller",
 )
 
-BOARD_CLASSES = frozenset({"internal_servo_only", "internal_servo_i2c_pwm"})
-_BOARD_ID_RE = re.compile(r"^rp2040_[a-z][a-z0-9_]*$")
+BOARD_CLASSES = frozenset({"internal_servo_only", "internal_servo_i2c_pwm", "i2c_pwm_only"})
+_BOARD_ID_RE = re.compile(r"^(rp2040|mega)_[a-z][a-z0-9_]*$")
 _TOPIC_RE = re.compile(r"^[a-z][a-z0-9_/]*$")
 _SERIAL_ID_RE = re.compile(r"^[A-Za-z0-9]*$")
 

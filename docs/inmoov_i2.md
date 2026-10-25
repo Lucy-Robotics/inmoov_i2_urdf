@@ -4,14 +4,14 @@
 
 **`inmoov_i2_urdf`** ships the **InMoov i2** robot description under `description/robot_description/`, vendored from [Artur-Fedjukevits/inmoov_ros2](https://github.com/Artur-Fedjukevits/inmoov_ros2/tree/main/src/inmoov_description) (`src/inmoov_description`, commit `73c584b`). Mesh URIs were rewritten from `package://inmoov_description/meshes/` to the parent `mesh_dir`; `description/urdf/inmoov.urdf.xacro` adds a fixed `base_node` root above the i2 `stand_link`. Meshes are CC BY-NC 4.0 (see `description/robot_description/LICENSE-ASSETS.md`).
 
-The hardware YAML in **`config/hardware/active.yaml`** maps the existing Lucy actuators (arms, torso, fingers, neck, jaw, eyes) onto i2 joint names. The i2 **expression** joints (eyelids, cheeks, brows, forehead, upper lip) exist in the URDF but are not wired yet: the generator publishes them at 0 through `joint_state_broadcaster` `extra_joints`.
+The hardware YAML in **`config/hardware/active.yaml`** drives the i2 from two Arduino Mega 2560 boards (`board_class: i2c_pwm_only`): **`mega_torso_head`** (one PCA9685, 12 servos: shoulders Y, torso, neck, jaw, eyes) and **`mega_arms`** (two PCA9685s chained on I2C, 18 servos: both arms and hands). `physical_pin` N is PCA9685 output N-1 (17-32 on the second chip); the same tables live in `lucy_embedded_firmware` `firmwares/arduino_mega/src/config/`, so change both together. Set each board's `serial_id` to its Mega's USB serial number, then flash with `pixi run firmware-flash-mega <board>` from the workspace. The i2 **expression** joints (eyelids, cheeks, brows, forehead, upper lip) exist in the URDF but are not wired yet: the generator publishes them at 0 through `joint_state_broadcaster` `extra_joints`.
 
 ## How to add i2 head actuators to the YAML
 
 1. **Freeze URDF joint names** in the description package (each DOF exactly one `joint name="..."` in the generated URDF).
-2. For each servo on **`rp2040_torso_head`**, append one list element to **`actuators:`** in `active.yaml` (or a preset under `configs/`).
-3. Assign **`virtual_pin`** as **contiguous integers per board**, starting after the last existing actuator on that board (today, shoulder Y uses `0` and `1` on `rp2040_torso_head`).
-4. Set **`physical_pin`** to the PCA9685 channel (or equivalent) from your **actual** schematic. The appendix below uses **example** channels (jaw on **7**, cheeks **8-9**, and so on through **22**) typical of full InMoov-style head wiring. Many draft tables also put “head roll” on **physical_pin 6**, which **collides** with Lucy’s use of pins **5-6** for shoulder Y on `rp2040_torso_head`-treat the appendix as a **template**, then renumber every `physical_pin` to match the board you build.
+2. For each servo on **`mega_torso_head`** (4 PCA outputs left free), append one list element to **`actuators:`** in `active.yaml` (or a preset under `configs/`).
+3. Assign **`virtual_pin`** as **contiguous integers per board**, starting after the last existing actuator on that board (today, `0`..`11` are used on `mega_torso_head`).
+4. Set **`physical_pin`** to the PCA9685 channel (or equivalent) from your **actual** schematic. The appendix below uses **example** channels (jaw on **7**, cheeks **8-9**, and so on through **22**) typical of full InMoov-style head wiring. Many draft tables also put “head roll” on **physical_pin 6**, which **collides** with the pins already used on `mega_torso_head`-treat the appendix as a **template**, then renumber every `physical_pin` to match the board you build.
 5. Tune **`servo_*_rad`**, **`offset_rad`**, **`direction`**, and **`scale`** on the bench once the joint exists in ros2_control.
 
 ## Appendix - example YAML: i2-oriented head / expression actuators

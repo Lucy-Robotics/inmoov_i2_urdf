@@ -64,39 +64,29 @@ firmware:
   build_dir: build/firmware
 controller_manager:
   update_rate: 100
-# One USB-CDC per board: slave_address is per serial port (default 1 is fine).
+# Arduino Megas, one USB serial each (serial_id = its USB serial number).
+# physical_pin N = PCA9685 output N-1: 1-16 on the first chip, 17-32 on the second.
+# Pin tables are mirrored in lucy_embedded_firmware firmwares/arduino_mega/src/config/.
 boards:
-  rp2040_left_arm:
-    serial_id: E6617C93E3858429
-    board_class: internal_servo_only
-    slave_address: 1
-    internal_servo_slots: 18
-    firmware_target: lucy_left_arm
-    compile_definition: USE_LEFT_ARM
-    topic_actuators: actuators/left_arm
-    topic_sensors: sensors/left_arm
-    controller:
-      name: left_arm_controller
-      type: joint_trajectory_controller/JointTrajectoryController
-  rp2040_right_arm:
-    serial_id: E6617C93E37A6629
-    board_class: internal_servo_only
-    slave_address: 1
-    internal_servo_slots: 18
-    firmware_target: lucy_right_arm
-    compile_definition: USE_RIGHT_ARM
-    topic_actuators: actuators/right_arm
-    topic_sensors: sensors/right_arm
-    controller:
-      name: right_arm_controller
-      type: joint_trajectory_controller/JointTrajectoryController
-  rp2040_torso_head:
+  mega_arms:
     serial_id: ''
-    board_class: internal_servo_i2c_pwm
+    board_class: i2c_pwm_only
+    slave_address: 1
+    internal_servo_slots: 32
+    firmware_target: arduino_mega
+    compile_definition: arms
+    topic_actuators: actuators/arms
+    topic_sensors: sensors/arms
+    controller:
+      name: arms_controller
+      type: joint_trajectory_controller/JointTrajectoryController
+  mega_torso_head:
+    serial_id: ''
+    board_class: i2c_pwm_only
     slave_address: 1
     internal_servo_slots: 16
-    firmware_target: lucy_torso
-    compile_definition: USE_TORSO
+    firmware_target: arduino_mega
+    compile_definition: torso_head
     topic_actuators: actuators/torso
     topic_sensors: sensors/torso
     controller:
@@ -105,10 +95,10 @@ boards:
 actuators:
   - id: left_shoulder_y_torso
     urdf_joint: left_shoulder_y_joint
-    board: rp2040_torso_head
+    board: mega_torso_head
     virtual_pin: 0
-    physical_pin: 5
-    servo_type: '270'
+    physical_pin: 1
+    servo_type: '180'
     offset: 0
     direction: 1
     scale: 1
@@ -118,10 +108,10 @@ actuators:
     enabled: false
   - id: right_shoulder_y_torso
     urdf_joint: right_shoulder_y_joint
-    board: rp2040_torso_head
+    board: mega_torso_head
     virtual_pin: 1
-    physical_pin: 6
-    servo_type: '270'
+    physical_pin: 2
+    servo_type: '180'
     offset: 0
     direction: 1
     scale: 1
@@ -131,10 +121,10 @@ actuators:
     enabled: false
   - id: left_shoulder_z
     urdf_joint: left_shoulder_z_joint
-    board: rp2040_left_arm
+    board: mega_arms
     virtual_pin: 0
-    physical_pin: 10
-    servo_type: '270'
+    physical_pin: 1
+    servo_type: '180'
     offset: 1.5708
     direction: 1
     scale: 1
@@ -144,10 +134,10 @@ actuators:
     enabled: false
   - id: left_shoulder_x
     urdf_joint: left_shoulder_x_joint
-    board: rp2040_left_arm
+    board: mega_arms
     virtual_pin: 1
-    physical_pin: 11
-    servo_type: '270'
+    physical_pin: 2
+    servo_type: '180'
     offset: 0
     direction: 1
     scale: 1
@@ -157,10 +147,10 @@ actuators:
     enabled: false
   - id: left_elbow_x
     urdf_joint: left_elbow_x_joint
-    board: rp2040_left_arm
+    board: mega_arms
     virtual_pin: 2
-    physical_pin: 12
-    servo_type: '270'
+    physical_pin: 3
+    servo_type: '180'
     offset: 0
     direction: 1
     scale: 1
@@ -170,23 +160,23 @@ actuators:
     enabled: false
   - id: left_wrist_z
     urdf_joint: left_wrist_z_joint
-    board: rp2040_left_arm
+    board: mega_arms
     virtual_pin: 3
-    physical_pin: 13
-    servo_type: '300'
+    physical_pin: 4
+    servo_type: '180'
     offset: 2.61799
     direction: 1
     scale: 1
     limit_min: 0
-    limit_max: 5.23599
+    limit_max: 3.14159
     default: 2.61799
     enabled: false
   - id: left_thumb
     urdf_joint: i02_leftHand_ThumbMid_joint
-    board: rp2040_left_arm
+    board: mega_arms
     virtual_pin: 4
-    physical_pin: 14
-    servo_type: '300'
+    physical_pin: 5
+    servo_type: '180'
     offset: 0
     direction: 1
     scale: 1
@@ -196,10 +186,10 @@ actuators:
     enabled: false
   - id: left_index
     urdf_joint: i02_leftHand_indexPhal_joint
-    board: rp2040_left_arm
+    board: mega_arms
     virtual_pin: 5
-    physical_pin: 15
-    servo_type: '300'
+    physical_pin: 6
+    servo_type: '180'
     offset: 0
     direction: 1
     scale: 1
@@ -209,10 +199,10 @@ actuators:
     enabled: false
   - id: left_majeure
     urdf_joint: i02_leftHand_majeurePhal_joint
-    board: rp2040_left_arm
+    board: mega_arms
     virtual_pin: 6
-    physical_pin: 16
-    servo_type: '300'
+    physical_pin: 7
+    servo_type: '180'
     offset: 0
     direction: 1
     scale: 1
@@ -222,10 +212,10 @@ actuators:
     enabled: false
   - id: left_ring
     urdf_joint: i02_leftHand_ringFingerPhal_joint
-    board: rp2040_left_arm
+    board: mega_arms
     virtual_pin: 7
-    physical_pin: 17
-    servo_type: '300'
+    physical_pin: 8
+    servo_type: '180'
     offset: 0
     direction: 1
     scale: 1
@@ -235,10 +225,10 @@ actuators:
     enabled: false
   - id: left_pinky
     urdf_joint: i02_leftHand_pinkyPhal_joint
-    board: rp2040_left_arm
+    board: mega_arms
     virtual_pin: 8
-    physical_pin: 18
-    servo_type: '300'
+    physical_pin: 9
+    servo_type: '180'
     offset: 0
     direction: 1
     scale: 1
@@ -248,10 +238,10 @@ actuators:
     enabled: false
   - id: right_shoulder_z
     urdf_joint: right_shoulder_z_joint
-    board: rp2040_right_arm
-    virtual_pin: 0
-    physical_pin: 10
-    servo_type: '270'
+    board: mega_arms
+    virtual_pin: 9
+    physical_pin: 17
+    servo_type: '180'
     offset: 1.5708
     direction: -1
     scale: 1
@@ -261,10 +251,10 @@ actuators:
     enabled: false
   - id: right_shoulder_x
     urdf_joint: right_shoulder_x_joint
-    board: rp2040_right_arm
-    virtual_pin: 1
-    physical_pin: 11
-    servo_type: '270'
+    board: mega_arms
+    virtual_pin: 10
+    physical_pin: 18
+    servo_type: '180'
     offset: 0
     direction: 1
     scale: 1
@@ -274,10 +264,10 @@ actuators:
     enabled: false
   - id: right_elbow_x
     urdf_joint: right_elbow_x_joint
-    board: rp2040_right_arm
-    virtual_pin: 2
-    physical_pin: 12
-    servo_type: '270'
+    board: mega_arms
+    virtual_pin: 11
+    physical_pin: 19
+    servo_type: '180'
     offset: 0
     direction: 1
     scale: 1
@@ -287,23 +277,23 @@ actuators:
     enabled: false
   - id: right_wrist_z
     urdf_joint: right_wrist_z_joint
-    board: rp2040_right_arm
-    virtual_pin: 3
-    physical_pin: 13
-    servo_type: '300'
+    board: mega_arms
+    virtual_pin: 12
+    physical_pin: 20
+    servo_type: '180'
     offset: 2.61799
     direction: -1
     scale: 1
     limit_min: 0
-    limit_max: 5.23599
+    limit_max: 3.14159
     default: 2.61799
     enabled: false
   - id: right_thumb
     urdf_joint: i02_rightHand_ThumbMid_joint
-    board: rp2040_right_arm
-    virtual_pin: 4
-    physical_pin: 14
-    servo_type: '300'
+    board: mega_arms
+    virtual_pin: 13
+    physical_pin: 21
+    servo_type: '180'
     offset: 0
     direction: 1
     scale: 1
@@ -313,10 +303,10 @@ actuators:
     enabled: false
   - id: right_index
     urdf_joint: i02_rightHand_indexPhal_joint
-    board: rp2040_right_arm
-    virtual_pin: 5
-    physical_pin: 15
-    servo_type: '300'
+    board: mega_arms
+    virtual_pin: 14
+    physical_pin: 22
+    servo_type: '180'
     offset: 0
     direction: 1
     scale: 1
@@ -326,10 +316,10 @@ actuators:
     enabled: false
   - id: right_majeure
     urdf_joint: i02_rightHand_majeurePhal_joint
-    board: rp2040_right_arm
-    virtual_pin: 6
-    physical_pin: 16
-    servo_type: '300'
+    board: mega_arms
+    virtual_pin: 15
+    physical_pin: 23
+    servo_type: '180'
     offset: 0
     direction: 1
     scale: 1
@@ -339,10 +329,10 @@ actuators:
     enabled: false
   - id: right_ring
     urdf_joint: i02_rightHand_ringFingerPhal_joint
-    board: rp2040_right_arm
-    virtual_pin: 7
-    physical_pin: 17
-    servo_type: '300'
+    board: mega_arms
+    virtual_pin: 16
+    physical_pin: 24
+    servo_type: '180'
     offset: 0
     direction: 1
     scale: 1
@@ -352,10 +342,10 @@ actuators:
     enabled: false
   - id: right_pinky
     urdf_joint: i02_rightHand_pinkyPhal_joint
-    board: rp2040_right_arm
-    virtual_pin: 8
-    physical_pin: 18
-    servo_type: '300'
+    board: mega_arms
+    virtual_pin: 17
+    physical_pin: 25
+    servo_type: '180'
     offset: 0
     direction: 1
     scale: 1
@@ -365,23 +355,23 @@ actuators:
     enabled: false
   - id: torso_stom_mid
     urdf_joint: torso_z_joint
-    board: rp2040_torso_head
+    board: mega_torso_head
     virtual_pin: 2
-    physical_pin: 7
-    servo_type: '270'
+    physical_pin: 3
+    servo_type: '180'
     offset: 2.35619
     direction: 1
     scale: 1
     limit_min: 0
-    limit_max: 4.71239
+    limit_max: 3.14159
     default: 2.35619
     enabled: false
   - id: torso_stom_top
     urdf_joint: torso_y_joint
-    board: rp2040_torso_head
+    board: mega_torso_head
     virtual_pin: 3
-    physical_pin: 8
-    servo_type: '270'
+    physical_pin: 4
+    servo_type: '180'
     offset: 1.5708
     direction: 1
     scale: 1
@@ -391,10 +381,10 @@ actuators:
     enabled: false
   - id: head_rot
     urdf_joint: i01_head_rothead_joint
-    board: rp2040_torso_head
+    board: mega_torso_head
     virtual_pin: 4
-    physical_pin: 9
-    servo_type: '270'
+    physical_pin: 5
+    servo_type: '180'
     offset: 1.5708
     direction: 1
     scale: 1
@@ -404,10 +394,10 @@ actuators:
     enabled: false
   - id: head_neck_roll
     urdf_joint: neck_joint
-    board: rp2040_torso_head
+    board: mega_torso_head
     virtual_pin: 5
-    physical_pin: 10
-    servo_type: '270'
+    physical_pin: 6
+    servo_type: '180'
     offset: 1.5708
     direction: 1
     scale: 1
@@ -417,10 +407,10 @@ actuators:
     enabled: false
   - id: head_neck
     urdf_joint: i01_head_neck_001_joint
-    board: rp2040_torso_head
+    board: mega_torso_head
     virtual_pin: 6
-    physical_pin: 11
-    servo_type: '300'
+    physical_pin: 8
+    servo_type: '180'
     offset: 1.5708
     direction: 1
     scale: 1
@@ -430,10 +420,10 @@ actuators:
     enabled: false
   - id: head_jaw
     urdf_joint: i02_head_jaw_joint
-    board: rp2040_torso_head
+    board: mega_torso_head
     virtual_pin: 7
-    physical_pin: 12
-    servo_type: '300'
+    physical_pin: 7
+    servo_type: '180'
     offset: 0.43633
     direction: 1
     scale: 0.10526
@@ -443,9 +433,9 @@ actuators:
     enabled: false
   - id: head_eye_right_y
     urdf_joint: i02_head_right_eye_vertical_joint
-    board: rp2040_torso_head
+    board: mega_torso_head
     virtual_pin: 8
-    physical_pin: 13
+    physical_pin: 9
     servo_type: '180'
     offset: 1.5708
     direction: 1
@@ -456,9 +446,9 @@ actuators:
     enabled: false
   - id: head_eye_right_x
     urdf_joint: i02_head_right_eye_horizontal_joint
-    board: rp2040_torso_head
+    board: mega_torso_head
     virtual_pin: 9
-    physical_pin: 14
+    physical_pin: 10
     servo_type: '180'
     offset: 1.5708
     direction: 1
@@ -469,9 +459,9 @@ actuators:
     enabled: false
   - id: head_eye_left_y
     urdf_joint: i02_head_left_eye_vertical_joint
-    board: rp2040_torso_head
+    board: mega_torso_head
     virtual_pin: 10
-    physical_pin: 15
+    physical_pin: 11
     servo_type: '180'
     offset: 1.5708
     direction: 1
@@ -482,9 +472,9 @@ actuators:
     enabled: false
   - id: head_eye_left_x
     urdf_joint: i02_head_left_eye_horizontal_joint
-    board: rp2040_torso_head
+    board: mega_torso_head
     virtual_pin: 11
-    physical_pin: 16
+    physical_pin: 12
     servo_type: '180'
     offset: 1.5708
     direction: 1
@@ -493,94 +483,4 @@ actuators:
     limit_max: 3.14159
     default: 1.5708
     enabled: false
-sensors:
-  - id: left_thumb_pressure
-    type: pressure
-    associated_actuator: left_thumb
-    board: rp2040_left_arm
-    virtual_pin: 0
-    physical_pin: 16
-    min_value: null
-    max_value: null
-    enabled: false
-  - id: left_index_pressure
-    type: pressure
-    associated_actuator: left_index
-    board: rp2040_left_arm
-    virtual_pin: 1
-    physical_pin: 17
-    min_value: null
-    max_value: null
-    enabled: false
-  - id: left_middle_pressure
-    type: pressure
-    associated_actuator: left_majeure
-    board: rp2040_left_arm
-    virtual_pin: 2
-    physical_pin: 18
-    min_value: null
-    max_value: null
-    enabled: false
-  - id: left_ring_pressure
-    type: pressure
-    associated_actuator: left_ring
-    board: rp2040_left_arm
-    virtual_pin: 3
-    physical_pin: 19
-    min_value: null
-    max_value: null
-    enabled: false
-  - id: left_pinky_pressure
-    type: pressure
-    associated_actuator: left_pinky
-    board: rp2040_left_arm
-    virtual_pin: 4
-    physical_pin: 20
-    min_value: null
-    max_value: null
-    enabled: false
-  - id: right_thumb_pressure
-    type: pressure
-    associated_actuator: right_thumb
-    board: rp2040_right_arm
-    virtual_pin: 0
-    physical_pin: 16
-    min_value: null
-    max_value: null
-    enabled: false
-  - id: right_index_pressure
-    type: pressure
-    associated_actuator: right_index
-    board: rp2040_right_arm
-    virtual_pin: 1
-    physical_pin: 17
-    min_value: null
-    max_value: null
-    enabled: false
-  - id: right_middle_pressure
-    type: pressure
-    associated_actuator: right_majeure
-    board: rp2040_right_arm
-    virtual_pin: 2
-    physical_pin: 18
-    min_value: null
-    max_value: null
-    enabled: false
-  - id: right_ring_pressure
-    type: pressure
-    associated_actuator: right_ring
-    board: rp2040_right_arm
-    virtual_pin: 3
-    physical_pin: 19
-    min_value: null
-    max_value: null
-    enabled: false
-  - id: right_pinky_pressure
-    type: pressure
-    associated_actuator: right_pinky
-    board: rp2040_right_arm
-    virtual_pin: 4
-    physical_pin: 20
-    min_value: null
-    max_value: null
-    enabled: false
+sensors: []
