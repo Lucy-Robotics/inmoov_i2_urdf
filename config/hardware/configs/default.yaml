@@ -64,40 +64,42 @@ firmware:
   build_dir: build/firmware
 controller_manager:
   update_rate: 100
-# Arduino Megas, one USB serial each (serial_id = its USB serial number).
-# physical_pin N = PCA9685 output N-1: 1-16 on the first chip, 17-32 on the second.
-# Pin tables are mirrored in lucy_embedded_firmware firmwares/arduino_mega/src/config/.
 boards:
-  mega_arms:
+  mega_left:
     serial_id: ''
     board_class: i2c_pwm_only
     slave_address: 1
-    internal_servo_slots: 32
-    firmware_target: arduino_mega
-    compile_definition: arms
-    topic_actuators: actuators/arms
-    topic_sensors: sensors/arms
-    controller:
-      name: arms_controller
-      type: joint_trajectory_controller/JointTrajectoryController
-  mega_torso_head:
-    serial_id: ''
-    board_class: i2c_pwm_only
-    slave_address: 1
+    pca_addresses:
+      - 65
     internal_servo_slots: 16
     firmware_target: arduino_mega
-    compile_definition: torso_head
-    topic_actuators: actuators/torso
-    topic_sensors: sensors/torso
+    compile_definition: mega_left
+    topic_actuators: actuators/left
+    topic_sensors: sensors/left
     controller:
-      name: torso_head_controller
+      name: left_controller
+      type: joint_trajectory_controller/JointTrajectoryController
+  mega_right:
+    serial_id: ''
+    board_class: i2c_pwm_only
+    slave_address: 1
+    pca_addresses:
+      - 65
+      - 64
+    internal_servo_slots: 32
+    firmware_target: arduino_mega
+    compile_definition: mega_right
+    topic_actuators: actuators/right
+    topic_sensors: sensors/right
+    controller:
+      name: right_controller
       type: joint_trajectory_controller/JointTrajectoryController
 actuators:
   - id: left_shoulder_y_torso
     urdf_joint: left_shoulder_y_joint
-    board: mega_torso_head
-    virtual_pin: 0
-    physical_pin: 1
+    board: mega_left
+    virtual_pin: 3
+    physical_pin: 13
     servo_type: '180'
     offset: 0
     direction: 1
@@ -108,9 +110,9 @@ actuators:
     enabled: false
   - id: right_shoulder_y_torso
     urdf_joint: right_shoulder_y_joint
-    board: mega_torso_head
-    virtual_pin: 1
-    physical_pin: 2
+    board: mega_right
+    virtual_pin: 15
+    physical_pin: 10
     servo_type: '180'
     offset: 0
     direction: 1
@@ -121,9 +123,9 @@ actuators:
     enabled: false
   - id: left_shoulder_z
     urdf_joint: left_shoulder_z_joint
-    board: mega_arms
+    board: mega_left
     virtual_pin: 0
-    physical_pin: 1
+    physical_pin: 10
     servo_type: '180'
     offset: 1.5708
     direction: 1
@@ -134,9 +136,9 @@ actuators:
     enabled: false
   - id: left_shoulder_x
     urdf_joint: left_shoulder_x_joint
-    board: mega_arms
+    board: mega_left
     virtual_pin: 1
-    physical_pin: 2
+    physical_pin: 11
     servo_type: '180'
     offset: 0
     direction: 1
@@ -147,9 +149,9 @@ actuators:
     enabled: false
   - id: left_elbow_x
     urdf_joint: left_elbow_x_joint
-    board: mega_arms
+    board: mega_left
     virtual_pin: 2
-    physical_pin: 3
+    physical_pin: 12
     servo_type: '180'
     offset: 0
     direction: 1
@@ -160,9 +162,9 @@ actuators:
     enabled: false
   - id: left_wrist_z
     urdf_joint: left_wrist_z_joint
-    board: mega_arms
-    virtual_pin: 3
-    physical_pin: 4
+    board: mega_right
+    virtual_pin: 5
+    physical_pin: 6
     servo_type: '180'
     offset: 2.61799
     direction: 1
@@ -173,9 +175,9 @@ actuators:
     enabled: false
   - id: left_thumb
     urdf_joint: i02_leftHand_ThumbMid_joint
-    board: mega_arms
-    virtual_pin: 4
-    physical_pin: 5
+    board: mega_right
+    virtual_pin: 0
+    physical_pin: 1
     servo_type: '180'
     offset: 0
     direction: 1
@@ -186,9 +188,9 @@ actuators:
     enabled: false
   - id: left_index
     urdf_joint: i02_leftHand_indexPhal_joint
-    board: mega_arms
-    virtual_pin: 5
-    physical_pin: 6
+    board: mega_right
+    virtual_pin: 1
+    physical_pin: 2
     servo_type: '180'
     offset: 0
     direction: 1
@@ -199,9 +201,9 @@ actuators:
     enabled: false
   - id: left_majeure
     urdf_joint: i02_leftHand_majeurePhal_joint
-    board: mega_arms
-    virtual_pin: 6
-    physical_pin: 7
+    board: mega_right
+    virtual_pin: 2
+    physical_pin: 3
     servo_type: '180'
     offset: 0
     direction: 1
@@ -212,9 +214,9 @@ actuators:
     enabled: false
   - id: left_ring
     urdf_joint: i02_leftHand_ringFingerPhal_joint
-    board: mega_arms
-    virtual_pin: 7
-    physical_pin: 8
+    board: mega_right
+    virtual_pin: 3
+    physical_pin: 4
     servo_type: '180'
     offset: 0
     direction: 1
@@ -225,9 +227,9 @@ actuators:
     enabled: false
   - id: left_pinky
     urdf_joint: i02_leftHand_pinkyPhal_joint
-    board: mega_arms
-    virtual_pin: 8
-    physical_pin: 9
+    board: mega_right
+    virtual_pin: 4
+    physical_pin: 5
     servo_type: '180'
     offset: 0
     direction: 1
@@ -238,9 +240,9 @@ actuators:
     enabled: false
   - id: right_shoulder_z
     urdf_joint: right_shoulder_z_joint
-    board: mega_arms
-    virtual_pin: 9
-    physical_pin: 17
+    board: mega_right
+    virtual_pin: 12
+    physical_pin: 7
     servo_type: '180'
     offset: 1.5708
     direction: -1
@@ -251,9 +253,9 @@ actuators:
     enabled: false
   - id: right_shoulder_x
     urdf_joint: right_shoulder_x_joint
-    board: mega_arms
-    virtual_pin: 10
-    physical_pin: 18
+    board: mega_right
+    virtual_pin: 13
+    physical_pin: 8
     servo_type: '180'
     offset: 0
     direction: 1
@@ -264,9 +266,9 @@ actuators:
     enabled: false
   - id: right_elbow_x
     urdf_joint: right_elbow_x_joint
-    board: mega_arms
-    virtual_pin: 11
-    physical_pin: 19
+    board: mega_right
+    virtual_pin: 14
+    physical_pin: 9
     servo_type: '180'
     offset: 0
     direction: 1
@@ -277,9 +279,9 @@ actuators:
     enabled: false
   - id: right_wrist_z
     urdf_joint: right_wrist_z_joint
-    board: mega_arms
-    virtual_pin: 12
-    physical_pin: 20
+    board: mega_right
+    virtual_pin: 11
+    physical_pin: 22
     servo_type: '180'
     offset: 2.61799
     direction: -1
@@ -290,9 +292,9 @@ actuators:
     enabled: false
   - id: right_thumb
     urdf_joint: i02_rightHand_ThumbMid_joint
-    board: mega_arms
-    virtual_pin: 13
-    physical_pin: 21
+    board: mega_right
+    virtual_pin: 6
+    physical_pin: 17
     servo_type: '180'
     offset: 0
     direction: 1
@@ -303,9 +305,9 @@ actuators:
     enabled: false
   - id: right_index
     urdf_joint: i02_rightHand_indexPhal_joint
-    board: mega_arms
-    virtual_pin: 14
-    physical_pin: 22
+    board: mega_right
+    virtual_pin: 7
+    physical_pin: 18
     servo_type: '180'
     offset: 0
     direction: 1
@@ -316,9 +318,9 @@ actuators:
     enabled: false
   - id: right_majeure
     urdf_joint: i02_rightHand_majeurePhal_joint
-    board: mega_arms
-    virtual_pin: 15
-    physical_pin: 23
+    board: mega_right
+    virtual_pin: 8
+    physical_pin: 19
     servo_type: '180'
     offset: 0
     direction: 1
@@ -329,9 +331,9 @@ actuators:
     enabled: false
   - id: right_ring
     urdf_joint: i02_rightHand_ringFingerPhal_joint
-    board: mega_arms
-    virtual_pin: 16
-    physical_pin: 24
+    board: mega_right
+    virtual_pin: 9
+    physical_pin: 20
     servo_type: '180'
     offset: 0
     direction: 1
@@ -342,9 +344,9 @@ actuators:
     enabled: false
   - id: right_pinky
     urdf_joint: i02_rightHand_pinkyPhal_joint
-    board: mega_arms
-    virtual_pin: 17
-    physical_pin: 25
+    board: mega_right
+    virtual_pin: 10
+    physical_pin: 21
     servo_type: '180'
     offset: 0
     direction: 1
@@ -355,9 +357,9 @@ actuators:
     enabled: false
   - id: torso_stom_mid
     urdf_joint: torso_z_joint
-    board: mega_torso_head
-    virtual_pin: 2
-    physical_pin: 3
+    board: mega_right
+    virtual_pin: 16
+    physical_pin: 11
     servo_type: '180'
     offset: 2.35619
     direction: 1
@@ -368,9 +370,9 @@ actuators:
     enabled: false
   - id: torso_stom_top
     urdf_joint: torso_y_joint
-    board: mega_torso_head
-    virtual_pin: 3
-    physical_pin: 4
+    board: mega_right
+    virtual_pin: 17
+    physical_pin: 12
     servo_type: '180'
     offset: 1.5708
     direction: 1
@@ -381,9 +383,9 @@ actuators:
     enabled: false
   - id: head_rot
     urdf_joint: i01_head_rothead_joint
-    board: mega_torso_head
+    board: mega_left
     virtual_pin: 4
-    physical_pin: 5
+    physical_pin: 2
     servo_type: '180'
     offset: 1.5708
     direction: 1
@@ -394,9 +396,9 @@ actuators:
     enabled: false
   - id: head_neck_roll
     urdf_joint: neck_joint
-    board: mega_torso_head
+    board: mega_left
     virtual_pin: 5
-    physical_pin: 6
+    physical_pin: 3
     servo_type: '180'
     offset: 1.5708
     direction: 1
@@ -407,9 +409,9 @@ actuators:
     enabled: false
   - id: head_neck
     urdf_joint: i01_head_neck_001_joint
-    board: mega_torso_head
+    board: mega_left
     virtual_pin: 6
-    physical_pin: 8
+    physical_pin: 4
     servo_type: '180'
     offset: 1.5708
     direction: 1
@@ -420,7 +422,7 @@ actuators:
     enabled: false
   - id: head_jaw
     urdf_joint: i02_head_jaw_joint
-    board: mega_torso_head
+    board: mega_left
     virtual_pin: 7
     physical_pin: 7
     servo_type: '180'
@@ -433,9 +435,9 @@ actuators:
     enabled: false
   - id: head_eye_right_y
     urdf_joint: i02_head_right_eye_vertical_joint
-    board: mega_torso_head
+    board: mega_left
     virtual_pin: 8
-    physical_pin: 9
+    physical_pin: 5
     servo_type: '180'
     offset: 1.5708
     direction: 1
@@ -446,9 +448,9 @@ actuators:
     enabled: false
   - id: head_eye_right_x
     urdf_joint: i02_head_right_eye_horizontal_joint
-    board: mega_torso_head
+    board: mega_left
     virtual_pin: 9
-    physical_pin: 10
+    physical_pin: 6
     servo_type: '180'
     offset: 1.5708
     direction: 1
@@ -459,9 +461,9 @@ actuators:
     enabled: false
   - id: head_eye_left_y
     urdf_joint: i02_head_left_eye_vertical_joint
-    board: mega_torso_head
+    board: mega_left
     virtual_pin: 10
-    physical_pin: 11
+    physical_pin: 8
     servo_type: '180'
     offset: 1.5708
     direction: 1
@@ -472,9 +474,9 @@ actuators:
     enabled: false
   - id: head_eye_left_x
     urdf_joint: i02_head_left_eye_horizontal_joint
-    board: mega_torso_head
+    board: mega_left
     virtual_pin: 11
-    physical_pin: 12
+    physical_pin: 9
     servo_type: '180'
     offset: 1.5708
     direction: 1

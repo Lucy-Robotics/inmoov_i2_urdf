@@ -4,13 +4,13 @@ controller_manager:
     update_rate: 100
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
-    arms_controller:
+    left_controller:
       type: joint_trajectory_controller/JointTrajectoryController
-    arms_torque_enable_controller:
+    left_torque_enable_controller:
       type: forward_command_controller/ForwardCommandController
-    torso_head_controller:
+    right_controller:
       type: joint_trajectory_controller/JointTrajectoryController
-    torso_head_torque_enable_controller:
+    right_torque_enable_controller:
       type: forward_command_controller/ForwardCommandController
 
 joint_state_broadcaster:
@@ -34,7 +34,7 @@ joint_state_broadcaster:
       - oak_rgb_camera_optical_joint
       - torso_bottom_joint
 
-arms_controller:
+left_controller:
   ros__parameters:
     interpolate_from_desired_state: true
     allow_nonzero_velocity_at_trajectory_end: false
@@ -42,85 +42,85 @@ arms_controller:
       - left_shoulder_z_joint
       - left_shoulder_x_joint
       - left_elbow_x_joint
-      - left_wrist_z_joint
-      - i02_leftHand_ThumbMid_joint
-      - i02_leftHand_indexPhal_joint
-      - i02_leftHand_majeurePhal_joint
-      - i02_leftHand_ringFingerPhal_joint
-      - i02_leftHand_pinkyPhal_joint
-      - right_shoulder_z_joint
-      - right_shoulder_x_joint
-      - right_elbow_x_joint
-      - right_wrist_z_joint
-      - i02_rightHand_ThumbMid_joint
-      - i02_rightHand_indexPhal_joint
-      - i02_rightHand_majeurePhal_joint
-      - i02_rightHand_ringFingerPhal_joint
-      - i02_rightHand_pinkyPhal_joint
+      - left_shoulder_y_joint
+      - i01_head_rothead_joint
+      - neck_joint
+      - i01_head_neck_001_joint
+      - i02_head_jaw_joint
+      - i02_head_right_eye_vertical_joint
+      - i02_head_right_eye_horizontal_joint
+      - i02_head_left_eye_vertical_joint
+      - i02_head_left_eye_horizontal_joint
     command_interfaces:
       - position
     state_interfaces:
       - position
 
-arms_torque_enable_controller:
+left_torque_enable_controller:
   ros__parameters:
     joints:
       - left_shoulder_z_joint
       - left_shoulder_x_joint
       - left_elbow_x_joint
-      - left_wrist_z_joint
-      - i02_leftHand_ThumbMid_joint
-      - i02_leftHand_indexPhal_joint
-      - i02_leftHand_majeurePhal_joint
-      - i02_leftHand_ringFingerPhal_joint
-      - i02_leftHand_pinkyPhal_joint
-      - right_shoulder_z_joint
-      - right_shoulder_x_joint
-      - right_elbow_x_joint
-      - right_wrist_z_joint
-      - i02_rightHand_ThumbMid_joint
-      - i02_rightHand_indexPhal_joint
-      - i02_rightHand_majeurePhal_joint
-      - i02_rightHand_ringFingerPhal_joint
-      - i02_rightHand_pinkyPhal_joint
+      - left_shoulder_y_joint
+      - i01_head_rothead_joint
+      - neck_joint
+      - i01_head_neck_001_joint
+      - i02_head_jaw_joint
+      - i02_head_right_eye_vertical_joint
+      - i02_head_right_eye_horizontal_joint
+      - i02_head_left_eye_vertical_joint
+      - i02_head_left_eye_horizontal_joint
     interface_name: torque_enable
 
-torso_head_controller:
+right_controller:
   ros__parameters:
     interpolate_from_desired_state: true
     allow_nonzero_velocity_at_trajectory_end: false
     joints:
-      - left_shoulder_y_joint
+      - i02_leftHand_ThumbMid_joint
+      - i02_leftHand_indexPhal_joint
+      - i02_leftHand_majeurePhal_joint
+      - i02_leftHand_ringFingerPhal_joint
+      - i02_leftHand_pinkyPhal_joint
+      - left_wrist_z_joint
+      - i02_rightHand_ThumbMid_joint
+      - i02_rightHand_indexPhal_joint
+      - i02_rightHand_majeurePhal_joint
+      - i02_rightHand_ringFingerPhal_joint
+      - i02_rightHand_pinkyPhal_joint
+      - right_wrist_z_joint
+      - right_shoulder_z_joint
+      - right_shoulder_x_joint
+      - right_elbow_x_joint
       - right_shoulder_y_joint
       - torso_z_joint
       - torso_y_joint
-      - i01_head_rothead_joint
-      - neck_joint
-      - i01_head_neck_001_joint
-      - i02_head_jaw_joint
-      - i02_head_right_eye_vertical_joint
-      - i02_head_right_eye_horizontal_joint
-      - i02_head_left_eye_vertical_joint
-      - i02_head_left_eye_horizontal_joint
     command_interfaces:
       - position
     state_interfaces:
       - position
 
-torso_head_torque_enable_controller:
+right_torque_enable_controller:
   ros__parameters:
     joints:
-      - left_shoulder_y_joint
+      - i02_leftHand_ThumbMid_joint
+      - i02_leftHand_indexPhal_joint
+      - i02_leftHand_majeurePhal_joint
+      - i02_leftHand_ringFingerPhal_joint
+      - i02_leftHand_pinkyPhal_joint
+      - left_wrist_z_joint
+      - i02_rightHand_ThumbMid_joint
+      - i02_rightHand_indexPhal_joint
+      - i02_rightHand_majeurePhal_joint
+      - i02_rightHand_ringFingerPhal_joint
+      - i02_rightHand_pinkyPhal_joint
+      - right_wrist_z_joint
+      - right_shoulder_z_joint
+      - right_shoulder_x_joint
+      - right_elbow_x_joint
       - right_shoulder_y_joint
       - torso_z_joint
       - torso_y_joint
-      - i01_head_rothead_joint
-      - neck_joint
-      - i01_head_neck_001_joint
-      - i02_head_jaw_joint
-      - i02_head_right_eye_vertical_joint
-      - i02_head_right_eye_horizontal_joint
-      - i02_head_left_eye_vertical_joint
-      - i02_head_left_eye_horizontal_joint
     interface_name: torque_enable
 
