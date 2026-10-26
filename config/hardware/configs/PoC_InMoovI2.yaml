@@ -102,19 +102,6 @@ boards:
 actuators:
   - id: left_shoulder_y_torso
     urdf_joint: left_shoulder_y_joint
-    board: mega_right
-    virtual_pin: 3
-    physical_pin: 13
-    servo_type: '180'
-    offset: 0
-    direction: 1
-    scale: 1
-    limit_min: 0
-    limit_max: 3.14159
-    default: 0
-    enabled: false
-  - id: right_shoulder_y_torso
-    urdf_joint: right_shoulder_y_joint
     board: mega_left
     virtual_pin: 15
     physical_pin: 35
@@ -126,11 +113,24 @@ actuators:
     limit_max: 3.14159
     default: 0
     enabled: true
+  - id: right_shoulder_y_torso
+    urdf_joint: right_shoulder_y_joint
+    board: mega_right
+    virtual_pin: 3
+    physical_pin: 13
+    servo_type: '180'
+    offset: 0
+    direction: 1
+    scale: 1
+    limit_min: 0
+    limit_max: 3.14159
+    default: 0
+    enabled: false
   - id: left_shoulder_z
     urdf_joint: left_shoulder_z_joint
-    board: mega_right
-    virtual_pin: 0
-    physical_pin: 10
+    board: mega_left
+    virtual_pin: 12
+    physical_pin: 34
     servo_type: '180'
     offset: 1.5708
     direction: 1
@@ -138,12 +138,12 @@ actuators:
     limit_min: 0
     limit_max: 3.14159
     default: 1.5708
-    enabled: false
+    enabled: true
   - id: left_shoulder_x
     urdf_joint: left_shoulder_x_joint
-    board: mega_right
-    virtual_pin: 1
-    physical_pin: 11
+    board: mega_left
+    virtual_pin: 13
+    physical_pin: 36
     servo_type: '180'
     offset: 0
     direction: 1
@@ -151,12 +151,12 @@ actuators:
     limit_min: 0
     limit_max: 3.14159
     default: 0
-    enabled: false
+    enabled: true
   - id: left_elbow_x
     urdf_joint: left_elbow_x_joint
-    board: mega_right
-    virtual_pin: 2
-    physical_pin: 12
+    board: mega_left
+    virtual_pin: 14
+    physical_pin: 33
     servo_type: '180'
     offset: 0
     direction: 1
@@ -164,7 +164,7 @@ actuators:
     limit_min: 0
     limit_max: 3.14159
     default: 0
-    enabled: false
+    enabled: true
   - id: left_wrist_z
     urdf_joint: left_wrist_z_joint
     board: mega_left
@@ -245,9 +245,9 @@ actuators:
     enabled: true
   - id: right_shoulder_z
     urdf_joint: right_shoulder_z_joint
-    board: mega_left
-    virtual_pin: 12
-    physical_pin: 34
+    board: mega_right
+    virtual_pin: 0
+    physical_pin: 10
     servo_type: '180'
     offset: 1.5708
     direction: -1
@@ -255,12 +255,12 @@ actuators:
     limit_min: 0
     limit_max: 3.14159
     default: 1.5708
-    enabled: true
+    enabled: false
   - id: right_shoulder_x
     urdf_joint: right_shoulder_x_joint
-    board: mega_left
-    virtual_pin: 13
-    physical_pin: 36
+    board: mega_right
+    virtual_pin: 1
+    physical_pin: 11
     servo_type: '180'
     offset: 0
     direction: 1
@@ -268,12 +268,12 @@ actuators:
     limit_min: 0
     limit_max: 3.14159
     default: 0
-    enabled: true
+    enabled: false
   - id: right_elbow_x
     urdf_joint: right_elbow_x_joint
-    board: mega_left
-    virtual_pin: 14
-    physical_pin: 33
+    board: mega_right
+    virtual_pin: 2
+    physical_pin: 12
     servo_type: '180'
     offset: 0
     direction: 1
@@ -281,7 +281,7 @@ actuators:
     limit_min: 0
     limit_max: 3.14159
     default: 0
-    enabled: true
+    enabled: false
   - id: right_wrist_z
     urdf_joint: right_wrist_z_joint
     board: mega_left
