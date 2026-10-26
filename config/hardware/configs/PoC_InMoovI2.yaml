@@ -91,7 +91,12 @@ boards:
     serial_id: 145323032323515082F0
     pca_addresses:
       - 65
-    internal_servo_slots: 16
+    mega_pins:
+      - 8
+      - 9
+      - 10
+      - 11
+    internal_servo_slots: 20
     firmware_target: arduino_mega
     compile_definition: mega_right
     topic_actuators: actuators/right
@@ -111,13 +116,13 @@ actuators:
     scale: 1
     limit_min: 0
     limit_max: 3.14159
-    default: 0
+    default: 1.5707963267948966
     enabled: true
   - id: right_shoulder_y_torso
     urdf_joint: right_shoulder_y_joint
     board: mega_right
     virtual_pin: 3
-    physical_pin: 13
+    physical_pin: 20
     servo_type: '180'
     offset: 0
     direction: 1
@@ -125,7 +130,7 @@ actuators:
     limit_min: 0
     limit_max: 3.14159
     default: 0
-    enabled: false
+    enabled: true
   - id: left_shoulder_z
     urdf_joint: left_shoulder_z_joint
     board: mega_left
@@ -247,7 +252,7 @@ actuators:
     urdf_joint: right_shoulder_z_joint
     board: mega_right
     virtual_pin: 0
-    physical_pin: 10
+    physical_pin: 17
     servo_type: '180'
     offset: 1.5708
     direction: -1
@@ -255,12 +260,12 @@ actuators:
     limit_min: 0
     limit_max: 3.14159
     default: 1.5708
-    enabled: false
+    enabled: true
   - id: right_shoulder_x
     urdf_joint: right_shoulder_x_joint
     board: mega_right
     virtual_pin: 1
-    physical_pin: 11
+    physical_pin: 19
     servo_type: '180'
     offset: 0
     direction: 1
@@ -268,12 +273,12 @@ actuators:
     limit_min: 0
     limit_max: 3.14159
     default: 0
-    enabled: false
+    enabled: true
   - id: right_elbow_x
     urdf_joint: right_elbow_x_joint
     board: mega_right
     virtual_pin: 2
-    physical_pin: 12
+    physical_pin: 18
     servo_type: '180'
     offset: 0
     direction: 1
@@ -281,7 +286,7 @@ actuators:
     limit_min: 0
     limit_max: 3.14159
     default: 0
-    enabled: false
+    enabled: true
   - id: right_wrist_z
     urdf_joint: right_wrist_z_joint
     board: mega_left
