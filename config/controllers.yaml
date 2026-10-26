@@ -40,12 +40,13 @@ left_controller:
       - i02_rightHand_ringFingerPhal_joint
       - i02_rightHand_pinkyPhal_joint
       - right_wrist_z_joint
-      - right_shoulder_z_joint
-      - right_shoulder_x_joint
-      - right_elbow_x_joint
-      - right_shoulder_y_joint
+      - left_shoulder_z_joint
+      - left_shoulder_x_joint
+      - left_elbow_x_joint
+      - left_shoulder_y_joint
       - torso_z_joint
       - torso_y_joint
+      - i01_head_rothead_joint
     command_interfaces:
       - position
     state_interfaces:
@@ -66,12 +67,13 @@ left_torque_enable_controller:
       - i02_rightHand_ringFingerPhal_joint
       - i02_rightHand_pinkyPhal_joint
       - right_wrist_z_joint
-      - right_shoulder_z_joint
-      - right_shoulder_x_joint
-      - right_elbow_x_joint
-      - right_shoulder_y_joint
+      - left_shoulder_z_joint
+      - left_shoulder_x_joint
+      - left_elbow_x_joint
+      - left_shoulder_y_joint
       - torso_z_joint
       - torso_y_joint
+      - i01_head_rothead_joint
     interface_name: torque_enable
 
 right_controller:
@@ -79,11 +81,11 @@ right_controller:
     interpolate_from_desired_state: true
     allow_nonzero_velocity_at_trajectory_end: false
     joints:
-      - left_shoulder_z_joint
-      - left_shoulder_x_joint
-      - left_elbow_x_joint
-      - left_shoulder_y_joint
-      - i01_head_rothead_joint
+      - right_shoulder_z_joint
+      - right_shoulder_x_joint
+      - right_elbow_x_joint
+      - right_shoulder_y_joint
+      - i02_head_left_forehead_joint
       - neck_joint
       - i01_head_neck_001_joint
       - i02_head_jaw_joint
@@ -101,7 +103,6 @@ right_controller:
       - i02_head_left_eyebrow_joint
       - i02_head_right_eyebrow_joint
       - i02_head_right_forehead_joint
-      - i02_head_left_forehead_joint
     command_interfaces:
       - position
     state_interfaces:
@@ -110,11 +111,11 @@ right_controller:
 right_torque_enable_controller:
   ros__parameters:
     joints:
-      - left_shoulder_z_joint
-      - left_shoulder_x_joint
-      - left_elbow_x_joint
-      - left_shoulder_y_joint
-      - i01_head_rothead_joint
+      - right_shoulder_z_joint
+      - right_shoulder_x_joint
+      - right_elbow_x_joint
+      - right_shoulder_y_joint
+      - i02_head_left_forehead_joint
       - neck_joint
       - i01_head_neck_001_joint
       - i02_head_jaw_joint
@@ -132,6 +133,5 @@ right_torque_enable_controller:
       - i02_head_left_eyebrow_joint
       - i02_head_right_eyebrow_joint
       - i02_head_right_forehead_joint
-      - i02_head_left_forehead_joint
     interface_name: torque_enable
 
