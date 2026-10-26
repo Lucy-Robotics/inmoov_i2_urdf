@@ -444,13 +444,13 @@ actuators:
     virtual_pin: 8
     physical_pin: 1
     servo_type: '180'
-    offset: 1.5708
+    offset: 1.65806
     direction: 1
-    scale: 1
-    limit_min: 0
-    limit_max: 3.14159
-    default: 1.5708
-    enabled: false
+    scale: 0.6
+    limit_min: 1.22173
+    limit_max: 2.0944
+    default: 1.74533
+    enabled: true
   - id: head_eye_right_x
     urdf_joint: i02_head_right_eye_horizontal_joint
     board: mega_right
@@ -470,13 +470,13 @@ actuators:
     virtual_pin: 10
     physical_pin: 10
     servo_type: '180'
-    offset: 1.5708
+    offset: 2.11767
     direction: 1
-    scale: 1
-    limit_min: 0
-    limit_max: 3.14159
-    default: 1.5708
-    enabled: false
+    scale: 0.6383
+    limit_min: 1.5708
+    limit_max: 2.3911
+    default: 2.00713
+    enabled: true
   - id: head_eye_left_x
     urdf_joint: i02_head_left_eye_horizontal_joint
     board: mega_right
@@ -496,26 +496,26 @@ actuators:
     virtual_pin: 12
     physical_pin: 3
     servo_type: '180'
-    offset: 1.88495
+    offset: 1.77674
     direction: 1
-    scale: 0.13889
-    limit_min: 0.0
-    limit_max: 3.14159
-    default: 1.88495
-    enabled: false
+    scale: 0.4717
+    limit_min: 1.22173
+    limit_max: 2.14675
+    default: 1.65806
+    enabled: true
   - id: head_eyelid_right_top
     urdf_joint: i02_head_right_top_eyelid_joint
     board: mega_right
     virtual_pin: 13
     physical_pin: 4
     servo_type: '180'
-    offset: 1.7952
+    offset: 2.1667
     direction: 1
-    scale: 0.19444
-    limit_min: 0.0
-    limit_max: 3.14159
-    default: 1.7952
-    enabled: false
+    scale: 1.52174
+    limit_min: 1.93732
+    limit_max: 2.33874
+    default: 2.05949
+    enabled: true
   - id: head_cheek_right
     urdf_joint: i02_head_right_cheek_joint
     board: mega_right
