@@ -130,7 +130,7 @@ actuators:
     urdf_joint: left_shoulder_z_joint
     board: mega_left
     virtual_pin: 12
-    physical_pin: 34
+    physical_pin: 33
     servo_type: '180'
     offset: 1.5708
     direction: 1
@@ -156,7 +156,7 @@ actuators:
     urdf_joint: left_elbow_x_joint
     board: mega_left
     virtual_pin: 14
-    physical_pin: 33
+    physical_pin: 34
     servo_type: '180'
     offset: 0
     direction: 1
