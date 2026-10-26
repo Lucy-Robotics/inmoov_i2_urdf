@@ -77,7 +77,8 @@ boards:
       - 9
       - 10
       - 11
-    internal_servo_slots: 36
+      - 13
+    internal_servo_slots: 37
     firmware_target: arduino_mega
     compile_definition: mega_left
     topic_actuators: actuators/left
@@ -393,9 +394,9 @@ actuators:
     enabled: false
   - id: head_rot
     urdf_joint: i01_head_rothead_joint
-    board: mega_right
-    virtual_pin: 4
-    physical_pin: 2
+    board: mega_left
+    virtual_pin: 18
+    physical_pin: 37
     servo_type: '180'
     offset: 1.5708
     direction: 1
@@ -403,7 +404,7 @@ actuators:
     limit_min: 0
     limit_max: 3.14159
     default: 1.5708
-    enabled: false
+    enabled: true
   - id: head_neck_roll
     urdf_joint: neck_joint
     board: mega_right
@@ -628,7 +629,7 @@ actuators:
   - id: head_forehead_left
     urdf_joint: i02_head_left_forehead_joint
     board: mega_right
-    virtual_pin: 22
+    virtual_pin: 4
     physical_pin: 16
     servo_type: '180'
     offset: 1.65806
