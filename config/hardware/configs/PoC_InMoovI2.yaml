@@ -111,12 +111,12 @@ actuators:
     virtual_pin: 15
     physical_pin: 36
     servo_type: '180'
-    offset: 0
+    offset: 2.00713
     direction: 1
     scale: 1
-    limit_min: 0
+    limit_min: 2.007128639793479
     limit_max: 3.14159
-    default: 1.5707963267948966
+    default: 2.443460952792061
     enabled: true
   - id: right_shoulder_y_torso
     urdf_joint: right_shoulder_y_joint
@@ -168,7 +168,7 @@ actuators:
     scale: 1.14592
     limit_min: 0.3490658503988659
     limit_max: 1.3962634015954636
-    default: 1.2217304763960306
+    default: 0.7853981633974483
     enabled: true
   - id: left_wrist_z
     urdf_joint: left_wrist_z_joint
