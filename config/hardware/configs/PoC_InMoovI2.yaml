@@ -496,11 +496,11 @@ actuators:
     virtual_pin: 12
     physical_pin: 3
     servo_type: '180'
-    offset: 1.77674
+    offset: 1.65806
     direction: 1
-    scale: 0.4717
-    limit_min: 1.22173
-    limit_max: 2.14675
+    scale: 1
+    limit_min: 1.3962634015954636
+    limit_max: 1.8325957145940461
     default: 1.65806
     enabled: true
   - id: head_eyelid_right_top
@@ -512,8 +512,8 @@ actuators:
     offset: 2.1667
     direction: 1
     scale: 1.52174
-    limit_min: 1.93732
-    limit_max: 2.33874
+    limit_min: 1.7453292519943295
+    limit_max: 2.2165681500327987
     default: 2.05949
     enabled: true
   - id: head_cheek_right
@@ -522,12 +522,12 @@ actuators:
     virtual_pin: 14
     physical_pin: 5
     servo_type: '180'
-    offset: 1.61325
+    offset: 1.86986
     direction: 1
-    scale: 0.20556
-    limit_min: 0.0
-    limit_max: 3.14159
-    default: 1.61325
+    scale: 0.78723
+    limit_min: 1.4486232791552935
+    limit_max: 2.2689280275926285
+    default: 1.8500490071139892
     enabled: true
   - id: head_cheek_left
     urdf_joint: i02_head_left_cheek_joint
@@ -535,12 +535,12 @@ actuators:
     virtual_pin: 15
     physical_pin: 6
     servo_type: '180'
-    offset: 1.9635
+    offset: 2.06167
     direction: 1
-    scale: 0.22222
-    limit_min: 0.0
-    limit_max: 3.14159
-    default: 1.9635
+    scale: 0.88889
+    limit_min: 1.5707963267948966
+    limit_max: 2.356194490192345
+    default: 1.9547687622336491
     enabled: true
   - id: head_upper_lip
     urdf_joint: i02_head_upper_lip_joint
@@ -548,12 +548,12 @@ actuators:
     virtual_pin: 16
     physical_pin: 8
     servo_type: '180'
-    offset: 0.0
+    offset: 0
     direction: 1
     scale: 0.03183
-    limit_min: 0.0
+    limit_min: 0
     limit_max: 3.14159
-    default: 0.0
+    default: 0
     enabled: true
   - id: head_eyelid_left_top
     urdf_joint: i02_head_left_top_eyelid_joint
@@ -561,12 +561,12 @@ actuators:
     virtual_pin: 17
     physical_pin: 11
     servo_type: '180'
-    offset: 1.88495
+    offset: 1.81514
     direction: 1
-    scale: 0.13889
-    limit_min: 0.0
-    limit_max: 3.14159
-    default: 1.88495
+    scale: 1.66667
+    limit_min: 1.6580627893946132
+    limit_max: 1.9198621771937625
+    default: 1.7976891295541593
     enabled: true
   - id: head_eyelid_left_bottom
     urdf_joint: i02_head_left_bottom_eyelid_joint
@@ -577,22 +577,22 @@ actuators:
     offset: 1.5708
     direction: 1
     scale: 0.11111
-    limit_min: 0.0
+    limit_min: 0
     limit_max: 3.14159
     default: 1.5708
-    enabled: true
+    enabled: false
   - id: head_eyebrow_left
     urdf_joint: i02_head_left_eyebrow_joint
     board: mega_right
     virtual_pin: 19
     physical_pin: 13
     servo_type: '180'
-    offset: 1.88496
+    offset: 2.01062
     direction: 1
-    scale: 0.27778
-    limit_min: 0.0
-    limit_max: 3.14159
-    default: 1.88496
+    scale: 1.19048
+    limit_min: 1.5707963267948966
+    limit_max: 2.303834612632515
+    default: 1.9547687622336491
     enabled: true
   - id: head_eyebrow_right
     urdf_joint: i02_head_right_eyebrow_joint
@@ -603,7 +603,7 @@ actuators:
     offset: 0.8976
     direction: 1
     scale: 0.19444
-    limit_min: 0.0
+    limit_min: 0
     limit_max: 3.14159
     default: 0.8976
     enabled: false
@@ -613,12 +613,12 @@ actuators:
     virtual_pin: 21
     physical_pin: 15
     servo_type: '180'
-    offset: 0.0
+    offset: 1.85005
     direction: 1
-    scale: 0.11111
-    limit_min: 0.0
-    limit_max: 3.14159
-    default: 0.0
+    scale: 1.33333
+    limit_min: 1.8500490071139892
+    limit_max: 2.111848394913139
+    default: 1.8500490071139892
     enabled: true
   - id: head_forehead_left
     urdf_joint: i02_head_left_forehead_joint
@@ -626,11 +626,11 @@ actuators:
     virtual_pin: 22
     physical_pin: 16
     servo_type: '180'
-    offset: 0.0
+    offset: 1.65806
     direction: 1
-    scale: 0.11111
-    limit_min: 0.0
-    limit_max: 3.14159
-    default: 0.0
+    scale: 1.33333
+    limit_min: 1.6580627893946132
+    limit_max: 1.9198621771937625
+    default: 1.9198621771937625
     enabled: true
 sensors: []
