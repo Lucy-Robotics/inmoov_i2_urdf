@@ -183,7 +183,7 @@ actuators:
     limit_min: 0
     limit_max: 3.14159
     default: 1.5707963267948966
-    enabled: false
+    enabled: true
   - id: left_thumb
     urdf_joint: i02_leftHand_ThumbMid_joint
     board: mega_right
