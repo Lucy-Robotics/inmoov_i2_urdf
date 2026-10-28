@@ -1,0 +1,642 @@
+version: 1
+robot_name: inmoov
+generated_files:
+  ros2_control_xacro: inmoov_ros2_control.xacro
+  controllers_yaml: controllers.yaml
+passive_urdf_joints: []
+ignore_urdf_joints:
+  - i02_leftHand_indexMid_joint
+  - i02_leftHand_indexTip_joint
+  - i02_leftHand_majeureMid_joint
+  - i02_leftHand_majeureTip_joint
+  - i02_leftHand_pinkyMid_joint
+  - i02_leftHand_pinkyTip_joint
+  - i02_leftHand_ringFingerMid_joint
+  - i02_leftHand_ringFingerTip_joint
+  - i02_leftHand_ThumbTip_joint
+  - i02_rightHand_indexMid_joint
+  - i02_rightHand_indexTip_joint
+  - i02_rightHand_majeureMid_joint
+  - i02_rightHand_majeureTip_joint
+  - i02_rightHand_pinkyMid_joint
+  - i02_rightHand_pinkyTip_joint
+  - i02_rightHand_ringFingerMid_joint
+  - i02_rightHand_ringFingerTip_joint
+  - i02_rightHand_ThumbTip_joint
+cameras:
+  - id: ext_camera
+    name: External USB Webcam
+    topic: /ext_camera/jpg
+    compressed_topic: /ext_camera/jpg/compressed
+    message_type: sensor_msgs/msg/CompressedImage
+    external: true
+    sim_gz_topic: /world/default/camera
+  - id: realsense-rgb
+    name: Realsense RGB
+    topic: /realsense/realsense2_camera/color/image_raw
+    compressed_topic: /realsense/realsense2_camera/color/image_raw/compressed
+    message_type: sensor_msgs/msg/CompressedImage
+    external: false
+    link: i02_head_left_eye_vertical
+  - id: realsense-aligned-depth
+    name: Realsense Aligned Depth
+    topic: /realsense/realsense2_camera/aligned_depth_to_color/image_raw
+    compressed_topic: /realsense/realsense2_camera/aligned_depth_to_color/image_raw/compressed
+    message_type: sensor_msgs/msg/CompressedImage
+    external: false
+    link: i02_head_left_eye_vertical
+  - id: left_eye_camera
+    name: Left eye webcam
+    topic: /camera/internal/left_eye/jpg
+    compressed_topic: /camera/internal/left_eye/jpg/compressed
+    message_type: sensor_msgs/msg/CompressedImage
+    external: false
+    link: i02_head_right_eye_vertical
+  - id: right_eye_camera
+    name: Right eye webcam
+    topic: /camera/internal/right_eye/jpg
+    compressed_topic: /camera/internal/right_eye/jpg/compressed
+    message_type: sensor_msgs/msg/CompressedImage
+    external: false
+    link: i02_head_left_eye_vertical
+firmware:
+  source_dir: lucy_embedded_firmware
+  build_dir: build/firmware
+controller_manager:
+  update_rate: 100
+boards:
+  mega_left:
+    board_class: i2c_pwm_only
+    slave_address: 1
+    serial_id: 1453230323235110C0D0
+    pca_addresses:
+      - 65
+      - 64
+    mega_pins:
+      - 8
+      - 9
+      - 10
+      - 11
+      - 13
+    internal_servo_slots: 37
+    firmware_target: arduino_mega
+    compile_definition: mega_left
+    topic_actuators: actuators/left
+    topic_sensors: sensors/left
+    controller:
+      name: left_controller
+      type: joint_trajectory_controller/JointTrajectoryController
+  mega_right:
+    board_class: i2c_pwm_only
+    slave_address: 1
+    serial_id: 145323032323515082F0
+    pca_addresses:
+      - 65
+    mega_pins:
+      - 8
+      - 9
+      - 10
+      - 11
+    internal_servo_slots: 20
+    firmware_target: arduino_mega
+    compile_definition: mega_right
+    topic_actuators: actuators/right
+    topic_sensors: sensors/right
+    controller:
+      name: right_controller
+      type: joint_trajectory_controller/JointTrajectoryController
+actuators:
+  - id: left_shoulder_y_torso
+    urdf_joint: left_shoulder_y_joint
+    board: mega_left
+    virtual_pin: 15
+    physical_pin: 36
+    servo_type: '180'
+    offset: 2.00713
+    direction: 1
+    scale: 1
+    limit_min: 2.007128639793479
+    limit_max: 3.14159
+    default: 2.443460952792061
+    enabled: true
+  - id: right_shoulder_y_torso
+    urdf_joint: right_shoulder_y_joint
+    board: mega_right
+    virtual_pin: 3
+    physical_pin: 20
+    servo_type: '180'
+    offset: 0
+    direction: 1
+    scale: 1
+    limit_min: 0
+    limit_max: 3.14159
+    default: 0
+    enabled: false
+  - id: left_shoulder_z
+    urdf_joint: left_shoulder_z_joint
+    board: mega_left
+    virtual_pin: 12
+    physical_pin: 33
+    servo_type: '180'
+    offset: 1.5708
+    direction: 1
+    scale: 1
+    limit_min: 0
+    limit_max: 3.14159
+    default: 1.5708
+    enabled: true
+  - id: left_shoulder_x
+    urdf_joint: left_shoulder_x_joint
+    board: mega_left
+    virtual_pin: 13
+    physical_pin: 35
+    servo_type: '180'
+    offset: 0
+    direction: 1
+    scale: 1
+    limit_min: 0
+    limit_max: 3.14159
+    default: 0
+    enabled: true
+  - id: left_elbow_x
+    urdf_joint: left_elbow_x_joint
+    board: mega_left
+    virtual_pin: 14
+    physical_pin: 34
+    servo_type: '180'
+    offset: 0.34907
+    direction: 1
+    scale: 1.14592
+    limit_min: 0.3490658503988659
+    limit_max: 1.3962634015954636
+    default: 0.7853981633974483
+    enabled: true
+  - id: left_wrist_z
+    urdf_joint: left_wrist_z_joint
+    board: mega_left
+    virtual_pin: 5
+    physical_pin: 6
+    servo_type: '180'
+    offset: 1.5708
+    direction: 1
+    scale: 1
+    limit_min: 0
+    limit_max: 3.14159
+    default: 1.5707963267948966
+    enabled: true
+  - id: left_thumb
+    urdf_joint: i02_leftHand_ThumbMid_joint
+    board: mega_left
+    virtual_pin: 0
+    physical_pin: 1
+    servo_type: '180'
+    offset: 0
+    direction: 1
+    scale: 0.84082
+    limit_min: 0
+    limit_max: 1.39626
+    default: 0
+    enabled: true
+  - id: left_index
+    urdf_joint: i02_leftHand_indexPhal_joint
+    board: mega_left
+    virtual_pin: 1
+    physical_pin: 2
+    servo_type: '180'
+    offset: 0
+    direction: 1
+    scale: 0.57384
+    limit_min: 0
+    limit_max: 2.26893
+    default: 0
+    enabled: true
+  - id: left_majeure
+    urdf_joint: i02_leftHand_majeurePhal_joint
+    board: mega_left
+    virtual_pin: 2
+    physical_pin: 3
+    servo_type: '180'
+    offset: 0
+    direction: 1
+    scale: 0.55533
+    limit_min: 0
+    limit_max: 2.26893
+    default: 0
+    enabled: true
+  - id: left_ring
+    urdf_joint: i02_leftHand_ringFingerPhal_joint
+    board: mega_left
+    virtual_pin: 3
+    physical_pin: 4
+    servo_type: '180'
+    offset: 0
+    direction: 1
+    scale: 0.60513
+    limit_min: 0
+    limit_max: 2.26893
+    default: 0
+    enabled: true
+  - id: left_pinky
+    urdf_joint: i02_leftHand_pinkyPhal_joint
+    board: mega_left
+    virtual_pin: 4
+    physical_pin: 5
+    servo_type: '180'
+    offset: 2.96706
+    direction: -1
+    scale: 0.45769
+    limit_min: 0
+    limit_max: 2.96706
+    default: 2.96706
+    enabled: true
+  - id: right_shoulder_z
+    urdf_joint: right_shoulder_z_joint
+    board: mega_right
+    virtual_pin: 0
+    physical_pin: 17
+    servo_type: '180'
+    offset: 1.5708
+    direction: -1
+    scale: 1
+    limit_min: 0
+    limit_max: 3.14159
+    default: 1.5708
+    enabled: false
+  - id: right_shoulder_x
+    urdf_joint: right_shoulder_x_joint
+    board: mega_right
+    virtual_pin: 1
+    physical_pin: 19
+    servo_type: '180'
+    offset: 0
+    direction: 1
+    scale: 1
+    limit_min: 0
+    limit_max: 3.14159
+    default: 0
+    enabled: false
+  - id: right_elbow_x
+    urdf_joint: right_elbow_x_joint
+    board: mega_right
+    virtual_pin: 2
+    physical_pin: 18
+    servo_type: '180'
+    offset: 0
+    direction: 1
+    scale: 1
+    limit_min: 0
+    limit_max: 3.14159
+    default: 0
+    enabled: false
+  - id: right_wrist_z
+    urdf_joint: right_wrist_z_joint
+    board: mega_left
+    virtual_pin: 11
+    physical_pin: 23
+    servo_type: '180'
+    offset: 1.5708
+    direction: -1
+    scale: 1
+    limit_min: 0
+    limit_max: 3.14159
+    default: 2.61799
+    enabled: true
+  - id: right_thumb
+    urdf_joint: i02_rightHand_ThumbMid_joint
+    board: mega_left
+    virtual_pin: 6
+    physical_pin: 17
+    servo_type: '180'
+    offset: 0
+    direction: 1
+    scale: 0.82291
+    limit_min: 0
+    limit_max: 1.39626
+    default: 0
+    enabled: true
+  - id: right_index
+    urdf_joint: i02_rightHand_indexPhal_joint
+    board: mega_left
+    virtual_pin: 7
+    physical_pin: 18
+    servo_type: '180'
+    offset: 0
+    direction: 1
+    scale: 0.55885
+    limit_min: 0
+    limit_max: 2.26893
+    default: 0
+    enabled: true
+  - id: right_majeure
+    urdf_joint: i02_rightHand_majeurePhal_joint
+    board: mega_left
+    virtual_pin: 8
+    physical_pin: 19
+    servo_type: '180'
+    offset: 0
+    direction: 1
+    scale: 0.41317
+    limit_min: 0
+    limit_max: 3.14159
+    default: 0
+    enabled: true
+  - id: right_ring
+    urdf_joint: i02_rightHand_ringFingerPhal_joint
+    board: mega_left
+    virtual_pin: 9
+    physical_pin: 21
+    servo_type: '180'
+    offset: 0
+    direction: 1
+    scale: 0.58001
+    limit_min: 0
+    limit_max: 2.26893
+    default: 0
+    enabled: true
+  - id: right_pinky
+    urdf_joint: i02_rightHand_pinkyPhal_joint
+    board: mega_left
+    virtual_pin: 10
+    physical_pin: 22
+    servo_type: '180'
+    offset: 0
+    direction: 1
+    scale: 0.57208
+    limit_min: 0
+    limit_max: 2.26893
+    default: 0
+    enabled: true
+  - id: torso_stom_mid
+    urdf_joint: torso_z_joint
+    board: mega_left
+    virtual_pin: 16
+    physical_pin: 11
+    servo_type: '180'
+    offset: 2.35619
+    direction: 1
+    scale: 1
+    limit_min: 0
+    limit_max: 3.14159
+    default: 2.35619
+    enabled: false
+  - id: torso_stom_top
+    urdf_joint: torso_y_joint
+    board: mega_left
+    virtual_pin: 17
+    physical_pin: 12
+    servo_type: '180'
+    offset: 1.5708
+    direction: 1
+    scale: 1
+    limit_min: 0
+    limit_max: 3.14159
+    default: 1.5708
+    enabled: false
+  - id: head_rot
+    urdf_joint: i01_head_rothead_joint
+    board: mega_left
+    virtual_pin: 18
+    physical_pin: 37
+    servo_type: '180'
+    offset: 1.5708
+    direction: 1
+    scale: 1
+    limit_min: 0
+    limit_max: 0.9948376736367678
+    default: 0.6108652381980153
+    enabled: true
+  - id: head_neck_roll
+    urdf_joint: neck_joint
+    board: mega_right
+    virtual_pin: 5
+    physical_pin: 3
+    servo_type: '180'
+    offset: 1.5708
+    direction: 1
+    scale: 1
+    limit_min: 0
+    limit_max: 3.14159
+    default: 1.5708
+    enabled: false
+  - id: head_neck
+    urdf_joint: i01_head_neck_001_joint
+    board: mega_right
+    virtual_pin: 6
+    physical_pin: 4
+    servo_type: '180'
+    offset: 1.5708
+    direction: 1
+    scale: 1
+    limit_min: 0
+    limit_max: 3.14159
+    default: 1.5708
+    enabled: false
+  - id: head_jaw
+    urdf_joint: i02_head_jaw_joint
+    board: mega_right
+    virtual_pin: 7
+    physical_pin: 7
+    servo_type: '180'
+    offset: 0.43633
+    direction: 1
+    scale: 0.10526
+    limit_min: 0.43633
+    limit_max: 2.0944
+    default: 0.43633
+    enabled: true
+  - id: head_eye_right_y
+    urdf_joint: i02_head_right_eye_vertical_joint
+    board: mega_right
+    virtual_pin: 8
+    physical_pin: 1
+    servo_type: '180'
+    offset: 1.65806
+    direction: 1
+    scale: 0.6
+    limit_min: 1.22173
+    limit_max: 2.0944
+    default: 1.74533
+    enabled: true
+  - id: head_eye_right_x
+    urdf_joint: i02_head_right_eye_horizontal_joint
+    board: mega_right
+    virtual_pin: 9
+    physical_pin: 2
+    servo_type: '180'
+    offset: 1.5708
+    direction: 1
+    scale: 1
+    limit_min: 0
+    limit_max: 3.14159
+    default: 1.5708
+    enabled: true
+  - id: head_eye_left_y
+    urdf_joint: i02_head_left_eye_vertical_joint
+    board: mega_right
+    virtual_pin: 10
+    physical_pin: 10
+    servo_type: '180'
+    offset: 2.11767
+    direction: 1
+    scale: 0.6383
+    limit_min: 1.5708
+    limit_max: 2.3911
+    default: 2.00713
+    enabled: true
+  - id: head_eye_left_x
+    urdf_joint: i02_head_left_eye_horizontal_joint
+    board: mega_right
+    virtual_pin: 11
+    physical_pin: 9
+    servo_type: '180'
+    offset: 1.5708
+    direction: 1
+    scale: 1
+    limit_min: 0
+    limit_max: 3.14159
+    default: 1.5708
+    enabled: false
+  - id: head_eyelid_right_bottom
+    urdf_joint: i02_head_right_bottom_eyelid_joint
+    board: mega_right
+    virtual_pin: 12
+    physical_pin: 3
+    servo_type: '180'
+    offset: 1.65806
+    direction: 1
+    scale: 1
+    limit_min: 1.3962634015954636
+    limit_max: 1.8325957145940461
+    default: 1.65806
+    enabled: true
+  - id: head_eyelid_right_top
+    urdf_joint: i02_head_right_top_eyelid_joint
+    board: mega_right
+    virtual_pin: 13
+    physical_pin: 4
+    servo_type: '180'
+    offset: 2.1667
+    direction: 1
+    scale: 1.52174
+    limit_min: 1.7453292519943295
+    limit_max: 2.2165681500327987
+    default: 2.05949
+    enabled: true
+  - id: head_cheek_right
+    urdf_joint: i02_head_right_cheek_joint
+    board: mega_right
+    virtual_pin: 14
+    physical_pin: 5
+    servo_type: '180'
+    offset: 1.86986
+    direction: 1
+    scale: 0.78723
+    limit_min: 1.4486232791552935
+    limit_max: 2.2689280275926285
+    default: 1.8500490071139892
+    enabled: true
+  - id: head_cheek_left
+    urdf_joint: i02_head_left_cheek_joint
+    board: mega_right
+    virtual_pin: 15
+    physical_pin: 6
+    servo_type: '180'
+    offset: 2.06167
+    direction: 1
+    scale: 0.88889
+    limit_min: 1.5707963267948966
+    limit_max: 2.356194490192345
+    default: 1.9547687622336491
+    enabled: true
+  - id: head_upper_lip
+    urdf_joint: i02_head_upper_lip_joint
+    board: mega_right
+    virtual_pin: 16
+    physical_pin: 8
+    servo_type: '180'
+    offset: 0
+    direction: 1
+    scale: 0.03183
+    limit_min: 0
+    limit_max: 3.14159
+    default: 0
+    enabled: true
+  - id: head_eyelid_left_top
+    urdf_joint: i02_head_left_top_eyelid_joint
+    board: mega_right
+    virtual_pin: 17
+    physical_pin: 11
+    servo_type: '180'
+    offset: 1.81514
+    direction: 1
+    scale: 1.66667
+    limit_min: 1.6580627893946132
+    limit_max: 1.9198621771937625
+    default: 1.7976891295541593
+    enabled: true
+  - id: head_eyelid_left_bottom
+    urdf_joint: i02_head_left_bottom_eyelid_joint
+    board: mega_right
+    virtual_pin: 18
+    physical_pin: 12
+    servo_type: '180'
+    offset: 1.5708
+    direction: 1
+    scale: 0.11111
+    limit_min: 0
+    limit_max: 3.14159
+    default: 1.5708
+    enabled: false
+  - id: head_eyebrow_left
+    urdf_joint: i02_head_left_eyebrow_joint
+    board: mega_right
+    virtual_pin: 19
+    physical_pin: 13
+    servo_type: '180'
+    offset: 2.01062
+    direction: 1
+    scale: 1.19048
+    limit_min: 1.5707963267948966
+    limit_max: 2.303834612632515
+    default: 1.9547687622336491
+    enabled: true
+  - id: head_eyebrow_right
+    urdf_joint: i02_head_right_eyebrow_joint
+    board: mega_right
+    virtual_pin: 20
+    physical_pin: 14
+    servo_type: '180'
+    offset: 0.8976
+    direction: 1
+    scale: 0.19444
+    limit_min: 0
+    limit_max: 3.14159
+    default: 0.8976
+    enabled: false
+  - id: head_forehead_right
+    urdf_joint: i02_head_right_forehead_joint
+    board: mega_right
+    virtual_pin: 21
+    physical_pin: 15
+    servo_type: '180'
+    offset: 1.85005
+    direction: 1
+    scale: 1.33333
+    limit_min: 1.8500490071139892
+    limit_max: 2.111848394913139
+    default: 1.8500490071139892
+    enabled: true
+  - id: head_forehead_left
+    urdf_joint: i02_head_left_forehead_joint
+    board: mega_right
+    virtual_pin: 4
+    physical_pin: 16
+    servo_type: '180'
+    offset: 1.65806
+    direction: 1
+    scale: 1.33333
+    limit_min: 1.6580627893946132
+    limit_max: 1.9198621771937625
+    default: 1.9198621771937625
+    enabled: true
+sensors: []
