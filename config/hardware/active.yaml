@@ -68,7 +68,7 @@ boards:
   mega_left:
     board_class: i2c_pwm_only
     slave_address: 1
-    serial_id: ''
+    serial_id: 1453230323235110C0D0
     pca_addresses:
       - 65
     mega_pins:
@@ -88,7 +88,7 @@ boards:
   mega_right:
     board_class: i2c_pwm_only
     slave_address: 1
-    serial_id: ''
+    serial_id: 145323032323515082F0
     pca_addresses:
       - 65
       - 64
@@ -118,7 +118,7 @@ actuators:
     limit_min: 2.007128639793479
     limit_max: 3.14159
     default: 2.443460952792061
-    enabled: false
+    enabled: true
   - id: right_shoulder_y_torso
     urdf_joint: right_shoulder_y_joint
     board: mega_right
@@ -144,7 +144,7 @@ actuators:
     limit_min: 0
     limit_max: 3.14159
     default: 1.5708
-    enabled: false
+    enabled: true
   - id: left_shoulder_x
     urdf_joint: left_shoulder_x_joint
     board: mega_left
@@ -157,7 +157,7 @@ actuators:
     limit_min: 0
     limit_max: 3.14159
     default: 0
-    enabled: false
+    enabled: true
   - id: left_elbow_x
     urdf_joint: left_elbow_x_joint
     board: mega_left
@@ -170,7 +170,7 @@ actuators:
     limit_min: 0.3490658503988659
     limit_max: 1.3962634015954636
     default: 0.7853981633974483
-    enabled: false
+    enabled: true
   - id: left_wrist_z
     urdf_joint: left_wrist_z_joint
     board: mega_right
@@ -196,7 +196,7 @@ actuators:
     limit_min: 0
     limit_max: 1.39626
     default: 0
-    enabled: false
+    enabled: true
   - id: left_index
     urdf_joint: i02_leftHand_indexPhal_joint
     board: mega_right
@@ -209,7 +209,7 @@ actuators:
     limit_min: 0
     limit_max: 2.26893
     default: 0
-    enabled: false
+    enabled: true
   - id: left_majeure
     urdf_joint: i02_leftHand_majeurePhal_joint
     board: mega_right
@@ -222,7 +222,7 @@ actuators:
     limit_min: 0
     limit_max: 2.26893
     default: 0
-    enabled: false
+    enabled: true
   - id: left_ring
     urdf_joint: i02_leftHand_ringFingerPhal_joint
     board: mega_right
@@ -235,7 +235,7 @@ actuators:
     limit_min: 0
     limit_max: 2.26893
     default: 0
-    enabled: false
+    enabled: true
   - id: left_pinky
     urdf_joint: i02_leftHand_pinkyPhal_joint
     board: mega_right
@@ -248,7 +248,7 @@ actuators:
     limit_min: 0
     limit_max: 2.96706
     default: 2.96706
-    enabled: false
+    enabled: true
   - id: right_shoulder_z
     urdf_joint: right_shoulder_z_joint
     board: mega_right
@@ -300,7 +300,7 @@ actuators:
     limit_min: 0
     limit_max: 3.14159
     default: 2.61799
-    enabled: false
+    enabled: true
   - id: right_thumb
     urdf_joint: i02_rightHand_ThumbMid_joint
     board: mega_right
@@ -313,7 +313,7 @@ actuators:
     limit_min: 0
     limit_max: 1.39626
     default: 0
-    enabled: false
+    enabled: true
   - id: right_index
     urdf_joint: i02_rightHand_indexPhal_joint
     board: mega_right
@@ -326,7 +326,7 @@ actuators:
     limit_min: 0
     limit_max: 2.26893
     default: 0
-    enabled: false
+    enabled: true
   - id: right_majeure
     urdf_joint: i02_rightHand_majeurePhal_joint
     board: mega_right
@@ -339,7 +339,7 @@ actuators:
     limit_min: 0
     limit_max: 3.14159
     default: 0
-    enabled: false
+    enabled: true
   - id: right_ring
     urdf_joint: i02_rightHand_ringFingerPhal_joint
     board: mega_right
@@ -352,7 +352,7 @@ actuators:
     limit_min: 0
     limit_max: 2.26893
     default: 0
-    enabled: false
+    enabled: true
   - id: right_pinky
     urdf_joint: i02_rightHand_pinkyPhal_joint
     board: mega_right
@@ -365,7 +365,7 @@ actuators:
     limit_min: 0
     limit_max: 2.26893
     default: 0
-    enabled: false
+    enabled: true
   - id: torso_stom_mid
     urdf_joint: torso_z_joint
     board: mega_right
@@ -404,7 +404,7 @@ actuators:
     limit_min: 0
     limit_max: 0.9948376736367678
     default: 0.6108652381980153
-    enabled: false
+    enabled: true
   - id: head_neck_roll
     urdf_joint: neck_joint
     board: mega_left
@@ -443,7 +443,7 @@ actuators:
     limit_min: 0.43633
     limit_max: 2.0944
     default: 0.43633
-    enabled: false
+    enabled: true
   - id: head_eye_right_y
     urdf_joint: i02_head_right_eye_vertical_joint
     board: mega_left
@@ -456,7 +456,7 @@ actuators:
     limit_min: 1.22173
     limit_max: 2.0944
     default: 1.74533
-    enabled: false
+    enabled: true
   - id: head_eye_right_x
     urdf_joint: i02_head_right_eye_horizontal_joint
     board: mega_left
@@ -469,7 +469,7 @@ actuators:
     limit_min: 0
     limit_max: 3.14159
     default: 1.5708
-    enabled: false
+    enabled: true
   - id: head_eye_left_y
     urdf_joint: i02_head_left_eye_vertical_joint
     board: mega_left
@@ -482,7 +482,7 @@ actuators:
     limit_min: 1.5708
     limit_max: 2.3911
     default: 2.00713
-    enabled: false
+    enabled: true
   - id: head_eye_left_x
     urdf_joint: i02_head_left_eye_horizontal_joint
     board: mega_left
@@ -508,7 +508,7 @@ actuators:
     limit_min: 1.3962634015954636
     limit_max: 1.8325957145940461
     default: 1.65806
-    enabled: false
+    enabled: true
   - id: head_eyelid_right_top
     urdf_joint: i02_head_right_top_eyelid_joint
     board: mega_left
@@ -521,7 +521,7 @@ actuators:
     limit_min: 1.7453292519943295
     limit_max: 2.2165681500327987
     default: 2.05949
-    enabled: false
+    enabled: true
   - id: head_cheek_right
     urdf_joint: i02_head_right_cheek_joint
     board: mega_left
@@ -534,7 +534,7 @@ actuators:
     limit_min: 1.4486232791552935
     limit_max: 2.2689280275926285
     default: 1.8500490071139892
-    enabled: false
+    enabled: true
   - id: head_cheek_left
     urdf_joint: i02_head_left_cheek_joint
     board: mega_left
@@ -547,7 +547,7 @@ actuators:
     limit_min: 1.5707963267948966
     limit_max: 2.356194490192345
     default: 1.9547687622336491
-    enabled: false
+    enabled: true
   - id: head_upper_lip
     urdf_joint: i02_head_upper_lip_joint
     board: mega_left
@@ -560,7 +560,7 @@ actuators:
     limit_min: 0
     limit_max: 3.14159
     default: 0
-    enabled: false
+    enabled: true
   - id: head_eyelid_left_top
     urdf_joint: i02_head_left_top_eyelid_joint
     board: mega_left
@@ -573,7 +573,7 @@ actuators:
     limit_min: 1.6580627893946132
     limit_max: 1.9198621771937625
     default: 1.7976891295541593
-    enabled: false
+    enabled: true
   - id: head_eyelid_left_bottom
     urdf_joint: i02_head_left_bottom_eyelid_joint
     board: mega_left
@@ -599,7 +599,7 @@ actuators:
     limit_min: 1.5707963267948966
     limit_max: 2.303834612632515
     default: 1.9547687622336491
-    enabled: false
+    enabled: true
   - id: head_eyebrow_right
     urdf_joint: i02_head_right_eyebrow_joint
     board: mega_left
@@ -625,7 +625,7 @@ actuators:
     limit_min: 1.8500490071139892
     limit_max: 2.111848394913139
     default: 1.8500490071139892
-    enabled: false
+    enabled: true
   - id: head_forehead_left
     urdf_joint: i02_head_left_forehead_joint
     board: mega_left
@@ -638,5 +638,5 @@ actuators:
     limit_min: 1.6580627893946132
     limit_max: 1.9198621771937625
     default: 1.9198621771937625
-    enabled: false
+    enabled: true
 sensors: []
