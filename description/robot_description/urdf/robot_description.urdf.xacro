@@ -65,18 +65,6 @@
       </geometry>
     </visual>
     <visual>
-      <origin xyz="${model_scale*0.003064} ${model_scale*0.511369} ${model_scale*-0.500823}" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="${mesh_dir}/NewHead_origin_visual_8.obj" scale="${model_scale} ${model_scale} ${model_scale}"/>
-      </geometry>
-    </visual>
-    <visual>
-      <origin xyz="${model_scale*-0.256734} ${model_scale*0.50007} ${model_scale*-0.669785}" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="${mesh_dir}/NewHead_origin_visual_9.obj" scale="${model_scale} ${model_scale} ${model_scale}"/>
-      </geometry>
-    </visual>
-    <visual>
       <origin xyz="${model_scale*0.003579} ${model_scale*0.678553} ${model_scale*-0.122705}" rpy="0 0 0" />
       <geometry>
         <mesh filename="${mesh_dir}/NewHead_origin_visual_10.obj" scale="${model_scale} ${model_scale} ${model_scale}"/>
