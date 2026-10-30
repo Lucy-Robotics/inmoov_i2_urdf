@@ -115,7 +115,7 @@ Editing joint names or interfaces requires updating **all three** in lockstep: `
 
 ### 6.1 `model_scale`
 
-Single number in `description/robot_description/urdf/properties.xacro`. Current `0.1196` targets a measured crown height of 1.80 m. Every position and primitive size in the body URDF is multiplied by it; **never** scale individual visuals — change this value instead. Mesh `<mesh scale="…">` is left at `1 1 1` so the committed DAE files are never re-exported.
+Single number in `description/robot_description/urdf/properties.xacro`. Current `0.10604` gives the measured crown height of 1.81 m. Every joint/visual/collision position, primitive size and `<mesh scale>` in the body URDF is multiplied by it; **never** scale individual visuals — change this value instead. Inertials are in SI for this scale and must be re-estimated when it changes.
 
 ### 6.2 Adding / removing a link or joint
 
@@ -200,13 +200,13 @@ After calibration, validate in the full stack:
 
 ```bash
 # Mock-hardware path (LucySystemHardware with publish_actuators:=false; no Gazebo, no real motors)
-ros2 launch lucy_bringup lucy.launch.py real:=false rviz:=true
+ros2 launch lucy_bringup lucy.launch.py robot_package:=inmoov_i2_urdf real:=false rviz:=true
 
 # Headless Gazebo (server-only with EGL rendering — camera sensors keep producing frames)
-ros2 launch lucy_bringup lucy.launch.py gazebo:=true headless:=true
+ros2 launch lucy_bringup lucy.launch.py robot_package:=inmoov_i2_urdf gazebo:=true headless:=true
 
 # Gazebo with GUI + RViz (X11 required)
-ros2 launch lucy_bringup lucy.launch.py gazebo:=true rviz:=true
+ros2 launch lucy_bringup lucy.launch.py robot_package:=inmoov_i2_urdf gazebo:=true rviz:=true
 ```
 
 Hot-reload after editing the URDF:

@@ -89,11 +89,10 @@ ros2 launch inmoov_i2_urdf rviz_standalone.launch.py
 # gz-sim + ros2_control + optional RViz
 ros2 launch inmoov_i2_urdf gazebo.launch.py                  # GUI
 ros2 launch inmoov_i2_urdf gazebo.launch.py headless:=true   # server-only, EGL render
-ros2 launch inmoov_i2_urdf gazebo.launch.py start_rviz:=true # spawn RViz too
 
 # Full stack (rosbridge + web panel) — from lucy_bringup
-ros2 launch lucy_bringup lucy.launch.py real:=false rviz:=true
-ros2 launch lucy_bringup lucy.launch.py gazebo:=true real:=false
+ros2 launch lucy_bringup lucy.launch.py robot_package:=inmoov_i2_urdf real:=false rviz:=true
+ros2 launch lucy_bringup lucy.launch.py robot_package:=inmoov_i2_urdf gazebo:=true real:=false
 ```
 
 Common arguments:
@@ -101,7 +100,7 @@ Common arguments:
 | Launch | Arg | Default | Notes |
 |--------|-----|---------|-------|
 | `control.launch.py` | `urdf_path`, `base_path`, `controllers_yaml`, `use_mock_hardware` | from `config/control.launch.yaml` | `use_mock_hardware:=true` keeps `LucySystemHardware` but sets `publish_actuators:=false` so URDF clamping is enforced without micro-ROS publishing. |
-| `gazebo.launch.py` | `urdf_path`, `base_path`, `controllers_yaml`, `headless`, `start_rviz` | package share | `headless:=true` runs `gz sim -s -r --headless-rendering`. |
+| `gazebo.launch.py` | `urdf_path`, `base_path`, `controllers_yaml`, `headless` | package share | `headless:=true` runs `gz sim -s -r --headless-rendering`. |
 | `rviz_standalone.launch.py` | `rviz_config`, `use_sim_time` | `config/inmoov_rviz.rviz`, `false` | Use when `/robot_description` + `/joint_states` already exist. |
 | `joint_preview.launch.py` | `jsp_gui` | `true` | `false` hides sliders so an external publisher can drive `/joint_states`. |
 
@@ -123,7 +122,7 @@ ros2 run xacro xacro description/urdf/inmoov.urdf.xacro \
 | `use_gazebo_sim` | `false` | `true` enables `gz_ros2_control` plugin + Gazebo physics overrides. |
 | `use_mock_hardware` | `false` | `true` keeps `LucySystemHardware` but disables the micro-ROS actuator publisher (URDF clamping still runs). |
 
-`model_scale` is **not** a launch arg — it is a single xacro property in [`description/robot_description/urdf/properties.xacro`](description/robot_description/urdf/properties.xacro) (current value `0.1196`, targets a measured crown height of 1.80 m). The flat URDF is **not** committed; regenerate on demand when needed.
+`model_scale` is **not** a launch arg — it is a single xacro property in [`description/robot_description/urdf/properties.xacro`](description/robot_description/urdf/properties.xacro) (current value `0.10604`, a measured crown height of 1.81 m). The flat URDF is **not** committed; regenerate on demand when needed.
 
 ## Tests and CI
 
