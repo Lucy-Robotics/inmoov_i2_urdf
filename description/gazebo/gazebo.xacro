@@ -374,7 +374,7 @@
   </ros2_control>
 
 
-  <gazebo reference="i02_head_left_eye_vertical">
+  <gazebo reference="oak_mount_link">
     <sensor type="camera" name="Realsense RGB">
       <always_on>true</always_on>
       <update_rate>30.0</update_rate>
@@ -394,7 +394,7 @@
       </camera>
     </sensor>
   </gazebo>
-  <gazebo reference="i02_head_left_eye_vertical">
+  <gazebo reference="oak_mount_link">
     <sensor type="camera" name="Realsense Aligned Depth">
       <always_on>true</always_on>
       <update_rate>30.0</update_rate>
@@ -414,7 +414,7 @@
       </camera>
     </sensor>
   </gazebo>
-  <gazebo reference="i02_head_right_eye_vertical">
+  <gazebo reference="oak_mount_link">
     <sensor type="camera" name="Left eye webcam">
       <always_on>true</always_on>
       <update_rate>30.0</update_rate>
@@ -434,7 +434,7 @@
       </camera>
     </sensor>
   </gazebo>
-  <gazebo reference="i02_head_left_eye_vertical">
+  <gazebo reference="oak_mount_link">
     <sensor type="camera" name="Right eye webcam">
       <always_on>true</always_on>
       <update_rate>30.0</update_rate>
