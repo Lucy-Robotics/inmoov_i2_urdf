@@ -9,11 +9,10 @@ license (CC BY-NC 4.0). **Commercial use is not permitted.**
 Covered files:
 
 - `meshes/` — all visual (`.obj`/`.mtl`) and collision (`.stl`) meshes
-- `description/inmoov_i2.blend` — the Blender source of the model
 
-Everything else in the package (`description/*.xacro`, `description/*.srdf`,
-`launch/`, `config/`, `scripts/`, `CMakeLists.txt`, `package.xml`) is
-GPL-3.0, see `LICENSE`.
+Everything else in the package (`description/**/*.xacro`, `launch/`,
+`config/`, `CMakeLists.txt`, `package.xml`) is GPL-3.0, see the `LICENSE`
+at the package root.
 
 ## Attribution
 
@@ -35,6 +34,6 @@ InMoov parts:
   into sub-meshes per link);
 - InMoov i2 head / face parts added;
 - some visual meshes decimated (jaw, head);
-- collision geometry added: simplified convex STL meshes for the forearms,
+- collision geometry added: simplified STL meshes for the forearms,
   lower torso and thumbs, and primitive boxes/cylinders elsewhere;
 - joint origins, axes and limits adjusted to the physical robot.
