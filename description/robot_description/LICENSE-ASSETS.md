@@ -20,7 +20,7 @@ at the package root.
   InMoov parts are published under a Creative Commons
   Attribution-NonCommercial license.
 - **Intermediate source:**
-  [Sentience-Robotics/inmoov_urdf](https://github.com/Sentience-Robotics/inmoov_urdf),
+  [Lucy-Robotics/inmoov_urdf](https://github.com/Lucy-Robotics/inmoov_urdf),
   which redistributes the InMoov-derived meshes (including the stand mesh)
   under CC BY-NC 4.0.
 - **This adaptation:** Artur Fedjukevits.

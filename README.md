@@ -164,4 +164,4 @@ CI: `.github/workflows/ci.yml` builds `inmoov_i2_urdf` + `lucy_ros2_control`, ru
 
 ## Maintainer
 
-Sentience Robotics Team — `contact@sentience-robotics.fr`.
+Lucy Robotics Team — `contact@lucy-robotics.com`.
