@@ -37,28 +37,28 @@ cameras:
     compressed_topic: /realsense/realsense2_camera/color/image_raw/compressed
     message_type: sensor_msgs/msg/CompressedImage
     external: false
-    link: i02_head_left_eye_vertical
+    link: oak_mount_link
   - id: realsense-aligned-depth
     name: Realsense Aligned Depth
     topic: /realsense/realsense2_camera/aligned_depth_to_color/image_raw
     compressed_topic: /realsense/realsense2_camera/aligned_depth_to_color/image_raw/compressed
     message_type: sensor_msgs/msg/CompressedImage
     external: false
-    link: i02_head_left_eye_vertical
+    link: oak_mount_link
   - id: left_eye_camera
     name: Left eye webcam
     topic: /camera/internal/left_eye/jpg
     compressed_topic: /camera/internal/left_eye/jpg/compressed
     message_type: sensor_msgs/msg/CompressedImage
     external: false
-    link: i02_head_right_eye_vertical
+    link: oak_mount_link
   - id: right_eye_camera
     name: Right eye webcam
     topic: /camera/internal/right_eye/jpg
     compressed_topic: /camera/internal/right_eye/jpg/compressed
     message_type: sensor_msgs/msg/CompressedImage
     external: false
-    link: i02_head_left_eye_vertical
+    link: oak_mount_link
 firmware:
   source_dir: lucy_embedded_firmware
   build_dir: build/firmware
