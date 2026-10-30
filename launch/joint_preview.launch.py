@@ -23,8 +23,7 @@ Sliders honor URDF <limit> tags. Use after editing robot_description.urdf.xacro
   ros2 launch inmoov_i2_urdf joint_preview.launch.py
 
 Pass ``jsp_gui:=false`` to suppress the joint-state-publisher-gui sliders —
-useful when an external publisher (e.g. ``scripts/autocalibrate_joint_limits.py
---view rviz``) drives ``/joint_states`` instead.
+useful when an external publisher drives ``/joint_states`` instead.
 """
 
 import os
@@ -85,7 +84,7 @@ def generate_launch_description():
         "jsp_gui",
         default_value="true",
         description="Spawn joint_state_publisher_gui (set false when an external "
-        "publisher drives /joint_states, e.g. autocalibrate_joint_limits.py --view rviz)",
+        "publisher drives /joint_states)",
     )
 
     urdf_path = LaunchConfiguration("urdf_path")

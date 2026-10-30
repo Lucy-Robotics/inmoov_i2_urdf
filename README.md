@@ -40,7 +40,6 @@ inmoov_i2_urdf/
 │       ├── gazebo.xacro                          # generated gz_ros2_control plugin + camera sensors (sim only)
 │       └── gazebo_bridge.yaml                    # generated ros_gz_bridge topic map (sim only)
 ├── worlds/default.sdf       # minimal world used by gazebo.launch.py
-├── scripts/                 # inject_collisions.py, autocalibrate_joint_limits.py, scale_xacro_origins.py
 ├── test/                    # pytest suite (xacro smoke, YAML, collisions, joint limits)
 └── archive/                 # Original InMoov-i1 STL meshes + URDF + PDF (lineage, not runtime)
 ```
@@ -75,7 +74,7 @@ colcon build --symlink-install --packages-select inmoov_i2_urdf lucy_ros2_contro
 source install/setup.bash
 ```
 
-`--symlink-install` lets edits to `description/`, `launch/`, `config/`, and `scripts/` be picked up on the next `ros2 launch` without rebuilding. Re-run `colcon build` only after touching `CMakeLists.txt`, `package.xml`, or `test/`.
+`--symlink-install` lets edits to `description/`, `launch/` and `config/` be picked up on the next `ros2 launch` without rebuilding. Re-run `colcon build` only after touching `CMakeLists.txt`, `package.xml`, or `test/`.
 
 ## Quick launches
 

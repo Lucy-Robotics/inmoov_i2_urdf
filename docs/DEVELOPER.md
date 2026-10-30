@@ -28,7 +28,6 @@ inmoov_i2_urdf/
 ├── package.xml / CMakeLists.txt
 ├── docs/                         # this file, hardware_mapping.md, inmoov_i2.md
 ├── launch/                       # 5 entry points (see §4)
-├── scripts/                      # inject_collisions.py, autocalibrate_joint_limits.py, scale_xacro_origins.py
 ├── config/                       # controllers.yaml, RViz config, hardware/*.yaml
 ├── description/
 │   ├── urdf/inmoov.urdf.xacro    # top-level entry
@@ -54,7 +53,7 @@ colcon build --symlink-install --packages-select inmoov_i2_urdf lucy_ros2_contro
 source install/setup.bash
 ```
 
-`--symlink-install` makes edits to `description/`, `launch/`, `config/`, and `scripts/` effective on the next `ros2 launch` — rebuild only after changes to `CMakeLists.txt`, `package.xml`, `test/`, or files outside the installed directories.
+`--symlink-install` makes edits to `description/`, `launch/` and `config/` effective on the next `ros2 launch` — rebuild only after changes to `CMakeLists.txt`, `package.xml`, `test/`, or files outside the installed directories.
 
 No `package.xml` dependency on `lucy_ros2_control` (would cycle: `lucy_ros2_control` depends on this URDF). Keep both packages in the same workspace; combo launches still need `lucy_ros2_control` at runtime.
 
@@ -70,7 +69,7 @@ No `package.xml` dependency on `lucy_ros2_control` (would cycle: `lucy_ros2_cont
 | `rviz.launch.py` | RViz2 only. Forwarded by `lucy_bringup` when `rviz:=true`. | Already covered by full bringup. |
 | `rviz_standalone.launch.py` | RViz2 only. | Second-terminal view when another stack publishes `/robot_description` + `/joint_states`. |
 
-Common arguments are listed in the root [README.md](../README.md#quick-launches). `joint_preview.launch.py jsp_gui:=false` is the hand-off used by `autocalibrate_joint_limits.py --view rviz`.
+Common arguments are listed in the root [README.md](../README.md#quick-launches).
 
 ---
 
@@ -120,8 +119,8 @@ Single number in `description/robot_description/urdf/properties.xacro`. Current 
 
 ### 6.2 Adding / removing a link or joint
 
-1. Edit `robot_description.urdf.xacro`. Wrap every new `<origin xyz="…">` and primitive size in `${model_scale * N}`. Use `scripts/scale_xacro_origins.py` for bulk maintenance (one-shot regex; review the diff).
-2. If the visual has a mesh, also write a paired `<collision>` (same origin + mesh) — or run `scripts/inject_collisions.py` to do it for you (idempotent; see §7.1).
+1. Edit `robot_description.urdf.xacro`. Wrap every new joint/visual/collision `<origin xyz="…">` and primitive size in `${model_scale * N}`. Leave `<inertial>` origins in SI.
+2. If the visual has a mesh, also write a paired `<collision>` (same origin + mesh).
 3. Pick or define a `<material name="Material.NNN">` and reference it on the new `<visual>` so RViz / LCP get a colour.
 4. Update `config/hardware/active.yaml` and `config/controllers.yaml` if the new joint is actuated (then regenerate via `lucy_config_generator`).
 5. Validate: `colcon test --packages-select inmoov_i2_urdf` (xacro smoke + collisions present + joint limits) and `joint_preview.launch.py`.
@@ -158,13 +157,13 @@ Limits are per-joint, in radians, on the `<limit lower="…" upper="…"/>` of e
 
 `lucy_config_generator` copies the `<limit lower upper>` of every actuated joint into the `<command_interface name="position">` block of the regenerated `inmoov_ros2_control.xacro` as `<param name="min/max"/>` (radians). At runtime, `LucySystemHardware` clamps `hw_commands_` to that envelope before the actuator mapping. Stock `gz_ros2_control` does **not** apply this clamp; rely on URDF `<limit>` enforcement coming from the spawned model when running in Gazebo.
 
-Two complementary routes — see §7.
+See §7.
 
 ---
 
 ## 7. Calibration workflow
 
-Two independent concerns: **collisions** (rarely revisited once correct) and **joint limits** (per joint, by hand or by auto-sweep against collisions).
+Two independent concerns: **collisions** (rarely revisited once correct) and **joint limits** (per joint, by hand).
 
 ### 7.1 Collisions
 
@@ -173,19 +172,13 @@ Strategy is **all-mesh, per-visual**: every `<visual><mesh/>` in every link gets
 Workflow:
 
 1. **Manual edit** — hand-author `<collision>` blocks in `robot_description.urdf.xacro`, mirroring the matching `<visual>` origin + mesh filename, or use a primitive (`<box>`, `<cylinder>`, `<sphere>`) when a mesh is overkill. Wrap dimensions in `${model_scale * N}`.
-2. **Auto-injection** (idempotent; collision names derive from each visual's `name=`):
-   ```bash
-   python3 src/inmoov_i2_urdf/scripts/inject_collisions.py \
-     src/inmoov_i2_urdf/description/robot_description/urdf/robot_description.urdf.xacro
-   ```
-   The script also bumps placeholder near-zero inertias to `mass=0.15` so dynamic sims don't blow up.
-3. **Visual check**:
+2. **Visual check**:
    ```bash
    ros2 launch inmoov_i2_urdf joint_preview.launch.py
    ```
    The default RViz config has two `RobotModel` displays — opaque visual + translucent collision overlay. Toggle the visual off to see only collisions (what PyBullet / Gazebo will see); raise alpha for clarity. Drive joints with the sliders and look for:
    - collisions that don't hug the mesh (DAE artefact),
-   - non-adjacent links interpenetrating at neutral pose (auto-cal will skip those joint pairs),
+   - non-adjacent links interpenetrating at neutral pose,
    - missing collisions on links you care about.
 
 ### 7.2 Joint limits — by hand (preferred for actuator end-stops)
@@ -201,42 +194,9 @@ Workflow:
    ros2 service call /lucy_control/restart std_srvs/srv/Trigger {}
    ```
 
-### 7.3 Joint limits — auto-cal (collision-bound envelope)
+### 7.3 Integrated check (Gazebo + RViz)
 
-`scripts/autocalibrate_joint_limits.py` expands xacro, loads the URDF in PyBullet (`URDF_USE_SELF_COLLISION | EXCLUDE_PARENT`), holds every joint at zero, sweeps each actuated joint up and down in fixed-degree increments, and records the first self-collision angle minus a safety margin (default 5°). It streams `/joint_states` so you watch the sweep live in your existing RViz layout.
-
-```bash
-# Terminal 1 — RViz only (no slider GUI fighting the publisher)
-ros2 launch inmoov_i2_urdf joint_preview.launch.py jsp_gui:=false
-
-# Terminal 2 — drive /joint_states from the sweep
-python3 src/inmoov_i2_urdf/scripts/autocalibrate_joint_limits.py --view rviz --rate-hz 60
-
-# Focus on a single chain while debugging (repeat --joint, others held at zero)
-python3 src/inmoov_i2_urdf/scripts/autocalibrate_joint_limits.py \
-  --view rviz --rate-hz 30 --joint left_shoulder_y --joint left_shoulder_x
-
-# Write the result back into the URDF instead of dry-run
-python3 src/inmoov_i2_urdf/scripts/autocalibrate_joint_limits.py --apply
-```
-
-Flags:
-
-- `--view {gui,rviz}` — PyBullet native window vs `/joint_states` publisher.
-- `--rate-hz` — `/joint_states` publish rate (RViz only).
-- `--joint <urdf_joint>` — repeatable, isolates one axis (everything else held at zero).
-- `--step-deg`, `--margin-deg` — sweep granularity / safety margin.
-- `--apply` — write the limits back to `robot_description.urdf.xacro`.
-
-PyBullet ships in the `lucy_ros2:jazzy` image via `Dockerfile.jazzy`; for host-side runs, see `scripts/requirements.txt`.
-
-Treat the result as an **upper bound on the kinematic envelope**, not the real end-stop. Override by hand for mechanical stops the URDF can't model (cable tension, gear stops), important poses outside the per-axis sweep from neutral, and finger meshes that overlap at the bind pose.
-
-**Baseline-contact masking.** With the all-mesh strategy, adjacent sub-meshes overlap by construction (torso-y/torso-z, shoulders ↔ upper arm, …). The script captures every link pair already in contact at neutral pose and ignores them — only **new** contacts caused by the joint motion stop the sweep.
-
-### 7.4 Integrated check (Gazebo + RViz)
-
-After hand or auto-calibration, validate in the full stack:
+After calibration, validate in the full stack:
 
 ```bash
 # Mock-hardware path (LucySystemHardware with publish_actuators:=false; no Gazebo, no real motors)
@@ -259,19 +219,7 @@ This restarts `robot_state_publisher` + `ros2_control` with the new URDF. **Cave
 
 ---
 
-## 8. Scripts
-
-| Script | Purpose | Idempotent |
-|--------|---------|------------|
-| `scripts/inject_collisions.py` | Inject paired `<collision>` for every `<visual><mesh/>`. Bumps zero-mass inertials to `mass=0.15`. | Yes — collision names derive from visual names. |
-| `scripts/autocalibrate_joint_limits.py` | Self-collision-bound joint-limit sweep in PyBullet. Optional `--apply` to write back. | `--apply` overwrites previous auto-cal values; manual values can be re-applied on top. |
-| `scripts/scale_xacro_origins.py` | One-shot maintenance: wrap raw `xyz` / primitive sizes with `${model_scale * N}`. | No — run once per migration; check the diff carefully. |
-
-`scripts/requirements.txt` is for host-side PyBullet runs only; CI / Docker image installs it via `Dockerfile.jazzy`.
-
----
-
-## 9. Hardware mapping (pointer)
+## 8. Hardware mapping (pointer)
 
 `config/hardware/active.yaml` is the **single source of truth** for boards, actuators, sensors, and the URDF↔servo calibration (`offset_deg`, `direction`, `scale`). The schema, semantics, and validation rules live in [hardware_mapping.md](hardware_mapping.md). The control panel and `lucy_config_generator` write here; never hand-edit during a running pipeline.
 
@@ -281,7 +229,7 @@ For InMoov-i2 head extension, see [inmoov_i2.md](inmoov_i2.md).
 
 ---
 
-## 10. Tests
+## 9. Tests
 
 ```bash
 colcon build --symlink-install --packages-select inmoov_i2_urdf lucy_ros2_control \
@@ -294,25 +242,24 @@ colcon test-result --verbose
 |------|----------------|
 | `test_xacro_smoke.py` | `inmoov.urdf.xacro` expands cleanly with default args and with `use_gazebo_sim:=true`. |
 | `test_joint_limits.py` | Every actuated joint has a `<limit>` and limits are within plausible ranges. |
-| `test_collisions_present.py` | Every `<visual><mesh/>` has a matching `<collision>` (auto-injection invariant). |
-| `test_inject_collisions.py` | `inject_collisions.py` round-trip is idempotent. |
-| `test_scale_xacro_origins.py` | `scale_xacro_origins.py` regex covers all the patterns it claims to. |
+| `test_collisions_present.py` | Every `<visual><mesh/>` has a matching `<collision>`. |
+| `test_model_scale.py` | Every mesh scale and non-inertial `<origin xyz>` uses `${model_scale}`. |
 | `test_hardware_yaml.py` | `active.yaml` schema, board references, virtual-pin contiguity, etc. |
 
 CI (`.github/workflows/ci.yml`) runs the same tests, then `pytest-cov` for `test/` only, and uploads Cobertura XML + HTML to Codecov (flag `inmoov_i2_urdf`) when `CODECOV_TOKEN` is set. Triggers: PRs and pushes to `main` / `master` / `dev`.
 
 ---
 
-## 11. RViz
+## 10. RViz
 
 - Layout: `config/inmoov_rviz.rviz` — opaque `RobotModel (Visual)` + translucent `RobotModel (Collision)` overlay. Pin RViz version expectations in release notes if the file breaks across upgrades.
 - TF chain: `joint_state_broadcaster` → `/joint_states` → `robot_state_publisher` → TF → `RobotModel`.
 
 ---
 
-## 12. Extension checklist
+## 11. Extension checklist
 
-1. **New link / joint / mesh** — update the xacro, run `inject_collisions.py`, run the test suite. Pick or define a `<material>` (RViz colour).
+1. **New link / joint / mesh** — update the xacro, add the paired `<collision>`, run the test suite. Pick or define a `<material>` (RViz colour).
 2. **New ros2_control joint** — edit `inmoov_ros2_control.xacro`, `config/hardware/active.yaml`, and `config/controllers.yaml` together (and firmware via the generator).
 3. **New launch argument** — propagate to `lucy_bringup` if integrators set it; document in this file and the root README.
 4. **New mesh** — verify it has triangle geometry (no `<lines>`-only) and reasonable `<diffuse>` for Gazebo.
@@ -320,7 +267,7 @@ CI (`.github/workflows/ci.yml`) runs the same tests, then `pytest-cov` for `test
 
 ---
 
-## 13. Contributing
+## 12. Contributing
 
 The root `CONTRIBUTING.md` carries the GPL-3.0 "contributing" wording expected by `ament_copyright`; `LICENSE` is at the root.
 

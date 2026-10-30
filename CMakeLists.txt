@@ -35,11 +35,8 @@ if(BUILD_TESTING)
   ament_add_pytest_test(collisions_present test/test_collisions_present.py
     TIMEOUT 180
   )
-  ament_add_pytest_test(inject_collisions test/test_inject_collisions.py
-    TIMEOUT 180
-  )
-  ament_add_pytest_test(scale_xacro_origins test/test_scale_xacro_origins.py
-    TIMEOUT 180
+  ament_add_pytest_test(model_scale test/test_model_scale.py
+    TIMEOUT 120
   )
 endif()
 
