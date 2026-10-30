@@ -17,7 +17,7 @@ ROS 2 **Jazzy** (Ubuntu 24.04). For contributors who change URDF/xacro, meshes, 
 | Launches (RViz, gz-sim, control, preview) | `launch/` |
 | Lineage / archive | `archive/` (original InMoov-i1 STL set + URDF + PDF — not loaded at runtime) |
 
-For InMoov-i2 head/expression actuators not present in the i1 URDF, see [inmoov_i2.md](inmoov_i2.md).
+For the i2 boards and wiring, see [inmoov_i2.md](inmoov_i2.md).
 
 ---
 
@@ -225,7 +225,7 @@ This restarts `robot_state_publisher` + `ros2_control` with the new URDF. **Cave
 
 Named presets under `config/hardware/configs/` are snapshots; `config/hardware/active_meta.yaml` records which preset is active and whether it was flashed.
 
-For InMoov-i2 head extension, see [inmoov_i2.md](inmoov_i2.md).
+For the i2 boards and wiring, see [inmoov_i2.md](inmoov_i2.md).
 
 ---
 

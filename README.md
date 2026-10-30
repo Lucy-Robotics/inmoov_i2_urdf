@@ -153,7 +153,7 @@ CI: `.github/workflows/ci.yml` builds `inmoov_i2_urdf` + `lucy_ros2_control`, ru
 | This file | Package scope, build, launches, integration points |
 | [**`docs/DEVELOPER.md`**](docs/DEVELOPER.md) | **Editing the URDF**, calibration workflow (collisions + joint limits), xacro architecture, scripts, extension checklist |
 | [`docs/hardware_mapping.md`](docs/hardware_mapping.md) | Schema for `config/hardware/active.yaml` (boards, actuators, calibration fields) |
-| [`docs/inmoov_i2.md`](docs/inmoov_i2.md) | i2 model source and head/expression actuators — YAML appendix |
+| [`docs/inmoov_i2.md`](docs/inmoov_i2.md) | i2 model source, boards and wiring |
 | `lucy_ros_packages` README | Lucy system bringup, hardware plugin, cameras, web panel |
 | `lucy_ws/docs/simulation_and_visualization.md` | Control panel ↔ ROS pipeline and sim-time notes |
 

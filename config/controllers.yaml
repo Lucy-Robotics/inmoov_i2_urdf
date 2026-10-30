@@ -19,17 +19,6 @@ joint_state_broadcaster:
       - NewHead_origin_joint
       - base_node_joint
       - i02_head_eyeAssembly_origin_joint
-      - i02_head_left_bottom_eyelid_joint
-      - i02_head_left_cheek_joint
-      - i02_head_left_eyebrow_joint
-      - i02_head_left_forehead_joint
-      - i02_head_left_top_eyelid_joint
-      - i02_head_right_bottom_eyelid_joint
-      - i02_head_right_cheek_joint
-      - i02_head_right_eyebrow_joint
-      - i02_head_right_forehead_joint
-      - i02_head_right_top_eyelid_joint
-      - i02_head_upper_lip_joint
       - oak_mount_joint
       - oak_rgb_camera_optical_joint
       - torso_bottom_joint
@@ -39,11 +28,7 @@ left_controller:
     interpolate_from_desired_state: true
     allow_nonzero_velocity_at_trajectory_end: false
     joints:
-      - left_shoulder_z_joint
-      - left_shoulder_x_joint
-      - left_elbow_x_joint
-      - left_shoulder_y_joint
-      - i01_head_rothead_joint
+      - i02_head_left_forehead_joint
       - neck_joint
       - i01_head_neck_001_joint
       - i02_head_jaw_joint
@@ -51,6 +36,21 @@ left_controller:
       - i02_head_right_eye_horizontal_joint
       - i02_head_left_eye_vertical_joint
       - i02_head_left_eye_horizontal_joint
+      - i02_head_right_bottom_eyelid_joint
+      - i02_head_right_top_eyelid_joint
+      - i02_head_right_cheek_joint
+      - i02_head_left_cheek_joint
+      - i02_head_upper_lip_joint
+      - i02_head_left_top_eyelid_joint
+      - i02_head_left_bottom_eyelid_joint
+      - i02_head_left_eyebrow_joint
+      - i02_head_right_eyebrow_joint
+      - i02_head_right_forehead_joint
+      - left_shoulder_z_joint
+      - left_shoulder_x_joint
+      - left_elbow_x_joint
+      - left_shoulder_y_joint
+      - i01_head_rothead_joint
     command_interfaces:
       - position
     state_interfaces:
@@ -59,11 +59,7 @@ left_controller:
 left_torque_enable_controller:
   ros__parameters:
     joints:
-      - left_shoulder_z_joint
-      - left_shoulder_x_joint
-      - left_elbow_x_joint
-      - left_shoulder_y_joint
-      - i01_head_rothead_joint
+      - i02_head_left_forehead_joint
       - neck_joint
       - i01_head_neck_001_joint
       - i02_head_jaw_joint
@@ -71,6 +67,21 @@ left_torque_enable_controller:
       - i02_head_right_eye_horizontal_joint
       - i02_head_left_eye_vertical_joint
       - i02_head_left_eye_horizontal_joint
+      - i02_head_right_bottom_eyelid_joint
+      - i02_head_right_top_eyelid_joint
+      - i02_head_right_cheek_joint
+      - i02_head_left_cheek_joint
+      - i02_head_upper_lip_joint
+      - i02_head_left_top_eyelid_joint
+      - i02_head_left_bottom_eyelid_joint
+      - i02_head_left_eyebrow_joint
+      - i02_head_right_eyebrow_joint
+      - i02_head_right_forehead_joint
+      - left_shoulder_z_joint
+      - left_shoulder_x_joint
+      - left_elbow_x_joint
+      - left_shoulder_y_joint
+      - i01_head_rothead_joint
     interface_name: torque_enable
 
 right_controller:
@@ -90,12 +101,12 @@ right_controller:
       - i02_rightHand_ringFingerPhal_joint
       - i02_rightHand_pinkyPhal_joint
       - right_wrist_z_joint
+      - torso_z_joint
+      - torso_y_joint
       - right_shoulder_z_joint
       - right_shoulder_x_joint
       - right_elbow_x_joint
       - right_shoulder_y_joint
-      - torso_z_joint
-      - torso_y_joint
     command_interfaces:
       - position
     state_interfaces:
@@ -116,11 +127,11 @@ right_torque_enable_controller:
       - i02_rightHand_ringFingerPhal_joint
       - i02_rightHand_pinkyPhal_joint
       - right_wrist_z_joint
+      - torso_z_joint
+      - torso_y_joint
       - right_shoulder_z_joint
       - right_shoulder_x_joint
       - right_elbow_x_joint
       - right_shoulder_y_joint
-      - torso_z_joint
-      - torso_y_joint
     interface_name: torque_enable
 
