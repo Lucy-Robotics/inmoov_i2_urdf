@@ -23,7 +23,7 @@ at the package root.
   [Lucy-Robotics/inmoov_urdf](https://github.com/Lucy-Robotics/inmoov_urdf),
   which redistributes the InMoov-derived meshes (including the stand mesh)
   under CC BY-NC 4.0.
-- **This adaptation:** Artur Fedjukevits.
+- **This adaptation:** Artur Fedjukevits — [Artur-Fedjukevits/inmoov_ros2](https://github.com/Artur-Fedjukevits/inmoov_ros2/tree/main/src/inmoov_description).
 
 ## Changes made
 

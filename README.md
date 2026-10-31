@@ -5,6 +5,8 @@ ROS 2 **Jazzy** (Ubuntu 24.04) package with the **InMoov-derived** robot descrip
 The web control panel (rosbridge + `/config/*` services) is **not** started from here — use `lucy_bringup` (`lucy.launch.py`) or `web_ros_api.launch.py` from `lucy_ros_packages`.
 
 > Forked from [`inmoov_urdf`](https://github.com/Lucy-Robotics/inmoov_urdf) (InMoov i1) to carry the i2 model as its own robot package (`robot_package:=inmoov_i2_urdf`).
+>
+> The i2 model (URDF/xacro, meshes, joint limits) is the work of **Artur Fedjukevits**, vendored from [Artur-Fedjukevits/inmoov_ros2](https://github.com/Artur-Fedjukevits/inmoov_ros2/tree/main/src/inmoov_description) (`src/inmoov_description`).
 
 ## Repository layout
 
@@ -160,6 +162,7 @@ CI: `.github/workflows/ci.yml` builds `inmoov_i2_urdf` + `lucy_ros2_control`, ru
 ## License and assets
 
 - **InMoov-derived** meshes and lineage: see `LICENSE` and attribution (CC BY-NC 4.0, Gael Langevin / InMoov). The original STL set + InMoov.urdf + PDF live under `archive/` for reference.
+- **i2 model and meshes:** Artur Fedjukevits, [Artur-Fedjukevits/inmoov_ros2](https://github.com/Artur-Fedjukevits/inmoov_ros2/tree/main/src/inmoov_description) (GPL-3.0 code, CC BY-NC 4.0 meshes, see `description/robot_description/LICENSE-ASSETS.md`).
 - **Package code** (launch, xacro, CMake, scripts): **GPL-3.0** per `package.xml`.
 
 ## Maintainer
