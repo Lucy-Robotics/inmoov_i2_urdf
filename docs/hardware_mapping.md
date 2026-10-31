@@ -2,7 +2,7 @@
 
 `config/hardware/active.yaml` is the **single source of truth** for Lucy hardware: RP2040 boards, actuators, and finger pressure sensors. The **`lucy_config_generator`** package (in `lucy_ros_packages`) reads this file and emits firmware C, `description/ros2_control/inmoov_ros2_control.xacro`, and `config/controllers.yaml`.
 
-For **InMoov i1 vs i2** scope and how to extend the YAML with **head / expression** actuators when the URDF evolves, see [inmoov_i2.md](inmoov_i2.md).
+For the i2 boards and wiring, see [inmoov_i2.md](inmoov_i2.md).
 
 ## Layout
 
@@ -63,7 +63,7 @@ Older InMoov-style actuator tables often name torso PCA pins **5** and **6** as 
 
 ## Head and expression actuators
 
-Extra head DOFs (eyelids, cheeks, separate eyeball drivers, and so on) are **not** listed in `active.yaml` until the URDF exports matching joint names and each row is validated on hardware. See [inmoov_i2.md](inmoov_i2.md) for a YAML appendix for a future **InMoov i2**–style extension.
+The i2 head and expression servos (eyelids, cheeks, brows, forehead, upper lip) have rows in `active.yaml` like every other joint, disabled until they are calibrated on the robot.
 
 ## Simulation mode (control panel)
 
@@ -77,5 +77,5 @@ After generation, `lucy_config_pipeline` calls **`/lucy_control/restart`** so th
 ## Editing
 
 1. Edit `config/hardware/active.yaml` (or a copy under `configs/`).
-2. Run validation (`colcon test --packages-select inmoov_urdf`) and the generator when implemented.
+2. Run validation (`colcon test --packages-select inmoov_i2_urdf`) and the generator when implemented.
 3. Re-commit generated artifacts (`description/ros2_control/inmoov_ros2_control.xacro`, `config/controllers.yaml`) after regeneration.

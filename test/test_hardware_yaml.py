@@ -1,4 +1,4 @@
-# Copyright 2025 Sentience Robotics Team
+# Copyright 2025 Lucy Robotics Team
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -73,8 +73,8 @@ REQUIRED_BOARD = (
     "controller",
 )
 
-BOARD_CLASSES = frozenset({"internal_servo_only", "internal_servo_i2c_pwm"})
-_BOARD_ID_RE = re.compile(r"^rp2040_[a-z][a-z0-9_]*$")
+BOARD_CLASSES = frozenset({"internal_servo_only", "internal_servo_i2c_pwm", "i2c_pwm_only"})
+_BOARD_ID_RE = re.compile(r"^(rp2040|mega)_[a-z][a-z0-9_]*$")
 _TOPIC_RE = re.compile(r"^[a-z][a-z0-9_/]*$")
 _SERIAL_ID_RE = re.compile(r"^[A-Za-z0-9]*$")
 
@@ -87,7 +87,7 @@ def _active_yaml_path() -> Path:
     try:
         from ament_index_python.packages import get_package_share_directory
 
-        share = get_package_share_directory("inmoov_urdf")
+        share = get_package_share_directory("inmoov_i2_urdf")
         p = Path(share) / "config" / "hardware" / "active.yaml"
         if p.is_file():
             return p
@@ -100,7 +100,7 @@ def _urdf_xacro_path() -> Path:
     try:
         from ament_index_python.packages import get_package_share_directory
 
-        share = Path(get_package_share_directory("inmoov_urdf"))
+        share = Path(get_package_share_directory("inmoov_i2_urdf"))
         urdf = share / "description" / "urdf" / "inmoov.urdf.xacro"
         if urdf.is_file():
             return urdf
@@ -114,7 +114,7 @@ def _controllers_yaml_path() -> Path:
     try:
         from ament_index_python.packages import get_package_share_directory
 
-        p = Path(get_package_share_directory("inmoov_urdf")) / "config" / "controllers.yaml"
+        p = Path(get_package_share_directory("inmoov_i2_urdf")) / "config" / "controllers.yaml"
         if p.is_file():
             return p
     except Exception:

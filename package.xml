@@ -1,11 +1,13 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>inmoov_urdf</name>
+  <name>inmoov_i2_urdf</name>
   <version>1.0.0</version>
-  <description>InMoov robot description and sim/visualization launches (URDF, Gazebo, RViz, ros2_control).</description>
-  <maintainer email="contact@sentience-robotics.fr">Sentience Robotics Team</maintainer>
+  <description>InMoov i2 robot description and sim/visualization launches (URDF, Gazebo, RViz, ros2_control).</description>
+  <maintainer email="contact@lucy-robotics.com">Lucy Robotics Team</maintainer>
   <license>GPL-3.0</license>
+  <license file="description/robot_description/LICENSE-ASSETS.md">CC-BY-NC-4.0</license>
+  <author email="fedjukevitsh@gmail.com">Artur Fedjukevits</author>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
@@ -20,10 +22,9 @@
   <exec_depend>ros_gz_interfaces</exec_depend>
   <exec_depend>robot_state_publisher</exec_depend>
   <exec_depend>gz_ros2_control</exec_depend>
-  <!-- No exec_depend on lucy_ros2_control: would cycle (lucy_ros2_control depends on inmoov_urdf for URDF share). Controller parameters ship in this package as config/controllers.yaml (#95). -->
+  <!-- No exec_depend on lucy_ros2_control: would cycle (lucy_ros2_control depends on inmoov_i2_urdf for URDF share). Controller parameters ship in this package as config/controllers.yaml (#95). -->
   <exec_depend>controller_manager</exec_depend>
   <exec_depend>lucy_control_supervisor</exec_depend>
-  <!-- autocalibrate_joint_limits.py needs PyBullet (pip: pybullet; installed in Dockerfile.jazzy) -->
   <exec_depend>python3-yaml</exec_depend>
 
   <test_depend>ament_lint_auto</test_depend>
