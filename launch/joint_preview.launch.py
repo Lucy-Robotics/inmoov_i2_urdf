@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright 2025 Sentience Robotics Team
+# Copyright 2025 Lucy Robotics Team
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,11 +20,10 @@ URDF joint-limit preview: robot_state_publisher + joint_state_publisher_gui + RV
 Sliders honor URDF <limit> tags. Use after editing robot_description.urdf.xacro
 (or properties.xacro for model_scale).
 
-  ros2 launch inmoov_urdf joint_preview.launch.py
+  ros2 launch inmoov_i2_urdf joint_preview.launch.py
 
 Pass ``jsp_gui:=false`` to suppress the joint-state-publisher-gui sliders —
-useful when an external publisher (e.g. ``scripts/autocalibrate_joint_limits.py
---view rviz``) drives ``/joint_states`` instead.
+useful when an external publisher drives ``/joint_states`` instead.
 """
 
 import os
@@ -41,7 +40,7 @@ from launch_ros.parameter_descriptions import ParameterValue
 
 def _default_paths():
     try:
-        share = Path(get_package_share_directory("inmoov_urdf"))
+        share = Path(get_package_share_directory("inmoov_i2_urdf"))
         root = share
     except Exception:
         root = Path(__file__).resolve().parents[1]
@@ -56,7 +55,7 @@ def _default_paths():
 def generate_launch_description():
     default_urdf, default_base, default_controllers = _default_paths()
     default_rviz = os.path.join(
-        get_package_share_directory("inmoov_urdf"),
+        get_package_share_directory("inmoov_i2_urdf"),
         "config",
         "inmoov_rviz.rviz",
     )
@@ -85,7 +84,7 @@ def generate_launch_description():
         "jsp_gui",
         default_value="true",
         description="Spawn joint_state_publisher_gui (set false when an external "
-        "publisher drives /joint_states, e.g. autocalibrate_joint_limits.py --view rviz)",
+        "publisher drives /joint_states)",
     )
 
     urdf_path = LaunchConfiguration("urdf_path")
