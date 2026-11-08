@@ -21,7 +21,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">1.48353</param>
           <param name="default">0.87267</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -41,7 +41,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">2.70526</param>
           <param name="default">0.34907</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -61,7 +61,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">1.2</param>
           <param name="default">0.0</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -101,7 +101,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">1.174</param>
           <param name="default">0.0</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -121,7 +121,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">1.302</param>
           <param name="default">0.0</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -141,7 +141,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">1.26</param>
           <param name="default">0.0</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -161,7 +161,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">1.373</param>
           <param name="default">0.0</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -181,7 +181,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">1.358</param>
           <param name="default">0.0</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -213,7 +213,7 @@
           <param name="direction">-1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">1.44862</param>
           <param name="default">0.83776</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -233,7 +233,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">2.87979</param>
           <param name="default">0.5236</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -253,7 +253,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">1.2</param>
           <param name="default">0.0</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -293,7 +293,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">1.149</param>
           <param name="default">0.0</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -313,7 +313,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">1.268</param>
           <param name="default">0.0</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -333,7 +333,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">1.298</param>
           <param name="default">0.0</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -353,7 +353,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">1.316</param>
           <param name="default">0.0</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -373,7 +373,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">1.298</param>
           <param name="default">0.0</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -405,7 +405,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">1.13446</param>
           <param name="default">0.0</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -425,7 +425,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">1.22173</param>
           <param name="default">0.0</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -445,7 +445,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">1.0472</param>
           <param name="default">0.5236</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -465,7 +465,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">0.5236</param>
           <param name="default">0.2618</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -485,7 +485,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">1.91986</param>
           <param name="default">1.0472</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -505,7 +505,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">0.69814</param>
           <param name="default">0.34907</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -525,7 +525,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">0.69814</param>
           <param name="default">0.34907</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -545,7 +545,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">0.17453</param>
           <param name="default">0.0</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -565,7 +565,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">0.5236</param>
           <param name="default">0.2618</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -585,7 +585,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">0.34906</param>
           <param name="default">0.17453</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -605,7 +605,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">0.5236</param>
           <param name="default">0.34907</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -625,7 +625,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">0.34906</param>
           <param name="default">0.17453</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -645,7 +645,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">0.43633</param>
           <param name="default">0.2618</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -665,7 +665,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">0.61087</param>
           <param name="default">0.34907</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -685,7 +685,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">0.64577</param>
           <param name="default">0.33161</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -705,7 +705,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">0.69813</param>
           <param name="default">0.43633</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -725,7 +725,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">0.1</param>
           <param name="default">0.0</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -745,7 +745,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">0.43633</param>
           <param name="default">0.2618</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -765,7 +765,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">0.34906</param>
           <param name="default">0.17453</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -785,7 +785,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">0.87267</param>
           <param name="default">0.5236</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -805,7 +805,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">0.61086</param>
           <param name="default">0.17453</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -825,7 +825,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">0.34907</param>
           <param name="default">0.0</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
@@ -845,7 +845,7 @@
           <param name="direction">1</param>
           <param name="scale">1</param>
           <param name="limit_min">0</param>
-          <param name="limit_max">3.14159</param>
+          <param name="limit_max">0.34907</param>
           <param name="default">0.0</param>
           <command_interface name="torque_enable"/>
           <command_interface name="position">
