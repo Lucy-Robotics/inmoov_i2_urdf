@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(inmoov_urdf)
+project(inmoov_i2_urdf)
 
 find_package(ament_cmake REQUIRED)
 
