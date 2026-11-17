@@ -970,7 +970,7 @@
         <mesh filename="${mesh_dir}/left_elbow_x_link_visual_5.obj" scale="${model_scale} ${model_scale} ${model_scale}"/>
       </geometry>
     </visual>
-    <visual>
+    <visual joint="left_wrist_z_joint">
       <origin xyz="${model_scale*-0.111198} ${model_scale*-0.926057} ${model_scale*-2.37526}" rpy="0 0 0" />
       <geometry>
         <mesh filename="${mesh_dir}/left_elbow_x_link_visual_6.obj" scale="${model_scale} ${model_scale} ${model_scale}"/>
@@ -1440,7 +1440,7 @@
         <mesh filename="${mesh_dir}/right_elbow_x_link_visual_5.obj" scale="${model_scale} ${model_scale} ${model_scale}"/>
       </geometry>
     </visual>
-    <visual>
+    <visual joint="right_wrist_z_joint">
       <origin xyz="${model_scale*0.111197} ${model_scale*-0.926057} ${model_scale*-2.375262}" rpy="0 0 0" />
       <geometry>
         <mesh filename="${mesh_dir}/right_elbow_x_link_visual_6.obj" scale="${model_scale} ${model_scale} ${model_scale}"/>
@@ -2065,7 +2065,7 @@
         <mesh filename="${mesh_dir}/torso_y_link_visual_27.obj" scale="${model_scale} ${model_scale} ${model_scale}"/>
       </geometry>
     </visual>
-    <visual>
+    <visual joint="i01_head_neck_001_joint">
       <origin xyz="${model_scale*0.002042} ${model_scale*-0.112135} ${model_scale*3.215523}" rpy="0.065886 0 0" />
       <geometry>
         <mesh filename="${mesh_dir}/torso_y_link_visual_28.obj" scale="${model_scale} ${model_scale} ${model_scale}"/>
@@ -2329,37 +2329,37 @@
         <mesh filename="${mesh_dir}/torso_y_link_visual_71.obj" scale="${model_scale} ${model_scale} ${model_scale}"/>
       </geometry>
     </visual>
-    <visual>
+    <visual joint="i01_head_neck_001_joint">
       <origin xyz="${model_scale*0.002669} ${model_scale*-0.09661} ${model_scale*3.780257}" rpy="0.065886 0 0" />
       <geometry>
         <mesh filename="${mesh_dir}/torso_y_link_visual_72.obj" scale="${model_scale} ${model_scale} ${model_scale}"/>
       </geometry>
     </visual>
-    <visual>
+    <visual joint="i01_head_neck_001_joint">
       <origin xyz="${model_scale*0.543781} ${model_scale*0.481715} ${model_scale*3.531201}" rpy="0.065886 0 0" />
       <geometry>
         <mesh filename="${mesh_dir}/torso_y_link_visual_73.obj" scale="${model_scale} ${model_scale} ${model_scale}"/>
       </geometry>
     </visual>
-    <visual>
+    <visual joint="i01_head_neck_001_joint">
       <origin xyz="${model_scale*-0.543089} ${model_scale*0.481714} ${model_scale*3.5312}" rpy="0.065886 0 0" />
       <geometry>
         <mesh filename="${mesh_dir}/torso_y_link_visual_74.obj" scale="${model_scale} ${model_scale} ${model_scale}"/>
       </geometry>
     </visual>
-    <visual>
+    <visual joint="i01_head_neck_001_joint">
       <origin xyz="${model_scale*0.432149} ${model_scale*0.400916} ${model_scale*3.969807}" rpy="0.065886 0 0" />
       <geometry>
         <mesh filename="${mesh_dir}/torso_y_link_visual_75.obj" scale="${model_scale} ${model_scale} ${model_scale}"/>
       </geometry>
     </visual>
-    <visual>
+    <visual joint="i01_head_neck_001_joint">
       <origin xyz="${model_scale*-0.431364} ${model_scale*0.400965} ${model_scale*3.969695}" rpy="0.065886 0 0" />
       <geometry>
         <mesh filename="${mesh_dir}/torso_y_link_visual_76.obj" scale="${model_scale} ${model_scale} ${model_scale}"/>
       </geometry>
     </visual>
-    <visual>
+    <visual joint="i01_head_neck_001_joint">
       <origin xyz="${model_scale*0.002615} ${model_scale*0.34311} ${model_scale*3.849369}" rpy="0.065886 0 0" />
       <geometry>
         <mesh filename="${mesh_dir}/torso_y_link_visual_77.obj" scale="${model_scale} ${model_scale} ${model_scale}"/>
