@@ -12,5 +12,5 @@ jobs:
   build-and-test:
     uses: Lucy-Robotics/.github/.github/workflows/robot-package-ci.yaml@master
     with:
-      package_name: inmoov_urdf
+      package_name: inmoov_i2_urdf
     secrets: inherit

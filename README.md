@@ -1,16 +1,18 @@
-# inmoov_urdf
+# inmoov_i2_urdf
 
-ROS 2 **Jazzy** (Ubuntu 24.04) package with the **InMoov-derived** robot description used by Lucy: **URDF/xacro**, **DAE meshes**, **ros2_control** blocks, **Gazebo (gz-sim) physics**, an **RViz** layout, and **launch files** for ros2_control + RViz / Gazebo.
+ROS 2 **Jazzy** (Ubuntu 24.04) package with the **InMoov-derived** robot description used by Lucy: **URDF/xacro**, **OBJ/STL meshes** (InMoov i2 model), **ros2_control** blocks, **Gazebo (gz-sim) physics**, an **RViz** layout, and **launch files** for ros2_control + RViz / Gazebo.
 
 The web control panel (rosbridge + `/config/*` services) is **not** started from here — use `lucy_bringup` (`lucy.launch.py`) or `web_ros_api.launch.py` from `lucy_ros_packages`.
 
-> Historical name: `package.xml` is `inmoov_urdf` but the content is the InMoov-style description used by Lucy.
+> Forked from [`inmoov_urdf`](https://github.com/Lucy-Robotics/inmoov_urdf) (InMoov i1) to carry the i2 model as its own robot package (`robot_package:=inmoov_i2_urdf`).
+>
+> The i2 model (URDF/xacro, meshes, joint limits) is the work of **Artur Fedjukevits**, vendored from [Artur-Fedjukevits/inmoov_ros2](https://github.com/Artur-Fedjukevits/inmoov_ros2/tree/main/src/inmoov_description) (`src/inmoov_description`).
 
 ## Repository layout
 
 ```text
-inmoov_urdf/
-├── package.xml              # ROS package: inmoov_urdf
+inmoov_i2_urdf/
+├── package.xml              # ROS package: inmoov_i2_urdf
 ├── CMakeLists.txt           # Installs launch/, config/, description/, docs/, worlds/
 ├── docs/                    # Developer + hardware docs (see Documentation map)
 ├── launch/
@@ -32,7 +34,7 @@ inmoov_urdf/
 │   ├── robot_description/
 │   │   ├── urdf/properties.xacro                 # model_scale
 │   │   ├── urdf/robot_description.urdf.xacro     # links, joints, visuals, collisions, materials
-│   │   └── meshes/dae/*.dae                      # 290 Collada meshes (visual + collision)
+│   │   └── meshes/*.obj, *.stl                     # i2 visual OBJ + collision STL meshes (CC BY-NC, see LICENSE-ASSETS.md)
 │   ├── ros2_control/
 │   │   └── inmoov_ros2_control.xacro             # hardware interfaces (real / mock)
 │   └── gazebo/
@@ -40,18 +42,17 @@ inmoov_urdf/
 │       ├── gazebo.xacro                          # generated gz_ros2_control plugin + camera sensors (sim only)
 │       └── gazebo_bridge.yaml                    # generated ros_gz_bridge topic map (sim only)
 ├── worlds/default.sdf       # minimal world used by gazebo.launch.py
-├── scripts/                 # inject_collisions.py, autocalibrate_joint_limits.py, scale_xacro_origins.py
 ├── test/                    # pytest suite (xacro smoke, YAML, collisions, joint limits)
 └── archive/                 # Original InMoov-i1 STL meshes + URDF + PDF (lineage, not runtime)
 ```
 
-**Install**: `launch/`, `config/`, `description/`, `docs/`, `worlds/` install to `share/inmoov_urdf/`. The combo launches resolve defaults from `get_package_share_directory("inmoov_urdf")`; override only for custom trees.
+**Install**: `launch/`, `config/`, `description/`, `docs/`, `worlds/` install to `share/inmoov_i2_urdf/`. The combo launches resolve defaults from `get_package_share_directory("inmoov_i2_urdf")`; override only for custom trees.
 
 ## Relationship to `lucy_ros_packages`
 
 | Repo | Role |
 |------|------|
-| **`inmoov_urdf`** (this) | Canonical robot description + sim/visualization entry launches (no rosbridge). |
+| **`inmoov_i2_urdf`** (this) | Canonical robot description + sim/visualization entry launches (no rosbridge). |
 | **`lucy_ros_packages`** | LUCY bringup (`lucy_bringup`), `LucySystemHardware` plugin, cameras, `web_ros_api` (rosbridge + `lucy_config_pipeline`). |
 
 `lucy_ros2_control` consumes this URDF when both packages share `lucy_ws/src/`. **No** `package.xml` dependency on `lucy_ros2_control` (would create a colcon cycle) — keep both packages in the workspace.
@@ -71,30 +72,29 @@ For the control panel, also build `lucy_bringup` + `lucy_config_pipeline` (pulle
 ```bash
 source /opt/ros/jazzy/setup.bash
 cd lucy_ws
-colcon build --symlink-install --packages-select inmoov_urdf lucy_ros2_control
+colcon build --symlink-install --packages-select inmoov_i2_urdf lucy_ros2_control
 source install/setup.bash
 ```
 
-`--symlink-install` lets edits to `description/`, `launch/`, `config/`, and `scripts/` be picked up on the next `ros2 launch` without rebuilding. Re-run `colcon build` only after touching `CMakeLists.txt`, `package.xml`, or `test/`.
+`--symlink-install` lets edits to `description/`, `launch/` and `config/` be picked up on the next `ros2 launch` without rebuilding. Re-run `colcon build` only after touching `CMakeLists.txt`, `package.xml`, or `test/`.
 
 ## Quick launches
 
 ```bash
 # URDF preview with sliders + RViz (no hardware, no controllers)
-ros2 launch inmoov_urdf joint_preview.launch.py
+ros2 launch inmoov_i2_urdf joint_preview.launch.py
 
 # Real robot: ros2_control + controllers (RViz in another terminal)
-ros2 launch inmoov_urdf control.launch.py
-ros2 launch inmoov_urdf rviz_standalone.launch.py
+ros2 launch inmoov_i2_urdf control.launch.py
+ros2 launch inmoov_i2_urdf rviz_standalone.launch.py
 
 # gz-sim + ros2_control + optional RViz
-ros2 launch inmoov_urdf gazebo.launch.py                  # GUI
-ros2 launch inmoov_urdf gazebo.launch.py headless:=true   # server-only, EGL render
-ros2 launch inmoov_urdf gazebo.launch.py start_rviz:=true # spawn RViz too
+ros2 launch inmoov_i2_urdf gazebo.launch.py                  # GUI
+ros2 launch inmoov_i2_urdf gazebo.launch.py headless:=true   # server-only, EGL render
 
 # Full stack (rosbridge + web panel) — from lucy_bringup
-ros2 launch lucy_bringup lucy.launch.py real:=false rviz:=true
-ros2 launch lucy_bringup lucy.launch.py gazebo:=true real:=false
+ros2 launch lucy_bringup lucy.launch.py robot_package:=inmoov_i2_urdf real:=false rviz:=true
+ros2 launch lucy_bringup lucy.launch.py robot_package:=inmoov_i2_urdf gazebo:=true real:=false
 ```
 
 Common arguments:
@@ -102,7 +102,7 @@ Common arguments:
 | Launch | Arg | Default | Notes |
 |--------|-----|---------|-------|
 | `control.launch.py` | `urdf_path`, `base_path`, `controllers_yaml`, `use_mock_hardware` | from `config/control.launch.yaml` | `use_mock_hardware:=true` keeps `LucySystemHardware` but sets `publish_actuators:=false` so URDF clamping is enforced without micro-ROS publishing. |
-| `gazebo.launch.py` | `urdf_path`, `base_path`, `controllers_yaml`, `headless`, `start_rviz` | package share | `headless:=true` runs `gz sim -s -r --headless-rendering`. |
+| `gazebo.launch.py` | `urdf_path`, `base_path`, `controllers_yaml`, `headless` | package share | `headless:=true` runs `gz sim -s -r --headless-rendering`. |
 | `rviz_standalone.launch.py` | `rviz_config`, `use_sim_time` | `config/inmoov_rviz.rviz`, `false` | Use when `/robot_description` + `/joint_states` already exist. |
 | `joint_preview.launch.py` | `jsp_gui` | `true` | `false` hides sliders so an external publisher can drive `/joint_states`. |
 
@@ -114,24 +114,24 @@ Tools that cannot consume xacro (Isaac Sim, offline MoveIt pipelines, the LCP ex
 ros2 run xacro xacro description/urdf/inmoov.urdf.xacro \
     base_path:=$(pwd)/description \
     use_gazebo_sim:=false \
-  | sed 's|file://[^ "]*meshes/dae/\([^"]*\)|meshes/dae/\1|g' \
+  | sed 's|file://[^ "]*meshes/\([^"]*\)|meshes/\1|g' \
   > /tmp/robot_description.urdf
 ```
 
 | Argument | Default | Purpose |
 |----------|---------|---------|
-| `base_path` | `.` | Parent of `robot_description/`; the xacro appends `/robot_description/meshes/dae`. |
+| `base_path` | `.` | Parent of `robot_description/`; the xacro appends `/robot_description/meshes`. |
 | `use_gazebo_sim` | `false` | `true` enables `gz_ros2_control` plugin + Gazebo physics overrides. |
 | `use_mock_hardware` | `false` | `true` keeps `LucySystemHardware` but disables the micro-ROS actuator publisher (URDF clamping still runs). |
 
-`model_scale` is **not** a launch arg — it is a single xacro property in [`description/robot_description/urdf/properties.xacro`](description/robot_description/urdf/properties.xacro) (current value `0.1196`, targets a measured crown height of 1.80 m). The flat URDF is **not** committed; regenerate on demand when needed.
+`model_scale` is **not** a launch arg — it is a single xacro property in [`description/robot_description/urdf/properties.xacro`](description/robot_description/urdf/properties.xacro) (current value `0.10604`, a measured crown height of 1.81 m). The flat URDF is **not** committed; regenerate on demand when needed.
 
 ## Tests and CI
 
 ```bash
-colcon build --symlink-install --packages-select inmoov_urdf lucy_ros2_control \
+colcon build --symlink-install --packages-select inmoov_i2_urdf lucy_ros2_control \
   --cmake-args -DBUILD_TESTING=ON
-colcon test --packages-select inmoov_urdf --event-handlers console_direct+
+colcon test --packages-select inmoov_i2_urdf --event-handlers console_direct+
 colcon test-result --verbose
 ```
 
@@ -139,14 +139,14 @@ Local coverage (needs `python3-pytest-cov`):
 
 ```bash
 mkdir -p build/coverage_reports build/coverage_html
-python3 -m pytest src/inmoov_urdf/test/ \
-  --cov=src/inmoov_urdf/launch --cov=src/inmoov_urdf/test \
+python3 -m pytest src/inmoov_i2_urdf/test/ \
+  --cov=src/inmoov_i2_urdf/launch --cov=src/inmoov_i2_urdf/test \
   --cov-report=term-missing \
-  --cov-report=xml:build/coverage_reports/inmoov_urdf.xml \
-  --cov-report=html:build/coverage_html/inmoov_urdf
+  --cov-report=xml:build/coverage_reports/inmoov_i2_urdf.xml \
+  --cov-report=html:build/coverage_html/inmoov_i2_urdf
 ```
 
-CI: `.github/workflows/ci.yml` builds `inmoov_urdf` + `lucy_ros2_control`, runs `colcon test`, then `pytest-cov`. Cobertura XML + HTML are uploaded to Codecov (flag `inmoov_urdf`) when `CODECOV_TOKEN` is set.
+CI: `.github/workflows/ci.yml` builds `inmoov_i2_urdf` + `lucy_ros2_control`, runs `colcon test`, then `pytest-cov`. Cobertura XML + HTML are uploaded to Codecov (flag `inmoov_i2_urdf`) when `CODECOV_TOKEN` is set.
 
 ## Documentation map
 
@@ -155,15 +155,16 @@ CI: `.github/workflows/ci.yml` builds `inmoov_urdf` + `lucy_ros2_control`, runs 
 | This file | Package scope, build, launches, integration points |
 | [**`docs/DEVELOPER.md`**](docs/DEVELOPER.md) | **Editing the URDF**, calibration workflow (collisions + joint limits), xacro architecture, scripts, extension checklist |
 | [`docs/hardware_mapping.md`](docs/hardware_mapping.md) | Schema for `config/hardware/active.yaml` (boards, actuators, calibration fields) |
-| [`docs/inmoov_i2.md`](docs/inmoov_i2.md) | i1 (current) vs i2 head/expression actuators — YAML appendix |
+| [`docs/inmoov_i2.md`](docs/inmoov_i2.md) | i2 model source, boards and wiring |
 | `lucy_ros_packages` README | Lucy system bringup, hardware plugin, cameras, web panel |
 | `lucy_ws/docs/simulation_and_visualization.md` | Control panel ↔ ROS pipeline and sim-time notes |
 
 ## License and assets
 
 - **InMoov-derived** meshes and lineage: see `LICENSE` and attribution (CC BY-NC 4.0, Gael Langevin / InMoov). The original STL set + InMoov.urdf + PDF live under `archive/` for reference.
+- **i2 model and meshes:** Artur Fedjukevits, [Artur-Fedjukevits/inmoov_ros2](https://github.com/Artur-Fedjukevits/inmoov_ros2/tree/main/src/inmoov_description) (GPL-3.0 code, CC BY-NC 4.0 meshes, see `description/robot_description/LICENSE-ASSETS.md`).
 - **Package code** (launch, xacro, CMake, scripts): **GPL-3.0** per `package.xml`.
 
 ## Maintainer
 
-Sentience Robotics Team — `contact@sentience-robotics.fr`.
+Lucy Robotics Team — `contact@lucy-robotics.com`.

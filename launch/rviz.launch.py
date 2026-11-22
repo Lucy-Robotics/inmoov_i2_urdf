@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright 2025 Sentience Robotics Team
+# Copyright 2025 Lucy Robotics Team
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ def generate_launch_description():
 
     rviz_config = PathJoinSubstitution(
         [
-            FindPackageShare("inmoov_urdf"),
+            FindPackageShare("inmoov_i2_urdf"),
             "config",
             "inmoov_rviz.rviz",
         ]
